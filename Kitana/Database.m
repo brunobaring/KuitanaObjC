@@ -96,7 +96,7 @@
     NSError *error = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableArray *response1 = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
-    
+//    NSLog(@"%@",response1);
 
     return response1;
 }

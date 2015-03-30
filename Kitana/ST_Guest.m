@@ -8,12 +8,22 @@
 
 #import "ST_Guest.h"
 #import "BCN_BeBeacon.h"
+#import "BCN_FindBeacon.h"
+#import "Discipline.h"
+#import "Database.h"
 
-@interface ST_Guest ()
+@interface ST_Guest (){
+    NSMutableDictionary *infoToRow;
+    NSArray *SectionTitles;
+    NSArray *IndexTitles;
+    CLBeacon *pBcn;
+    NSMutableArray *newDisciplines;
+}
 
 @property (nonatomic) NSMutableArray *myMutArray;
-@property BCN_BeBeacon *bcn;
-
+@property BCN_BeBeacon *be_beacon;
+@property BCN_FindBeacon *find_beacon;
+@property NSMutableArray *classesToRows;
 @end
 
 @implementation ST_Guest
@@ -23,13 +33,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSDictionary *AUXstudents = @{@"Cadastradas" : self.student.classes,
+                                  @"Não-Cadastradas" : @[@""]};
+    
+    infoToRow = [NSMutableDictionary dictionaryWithDictionary:AUXstudents];
+    
+    SectionTitles = [[infoToRow allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    SectionTitles = @[@"Cadastradas",@"Nao-Cadastradas"];
+    
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager requestAlwaysAuthorization];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    self.bcn = [BCN_BeBeacon initBeaconWithMajor:5 minor:5];
+    //    self.be_beacon = [BCN_BeBeacon initBeaconWithMajor:self.student.major minor:self.student.minor];
+    
+    self.find_beacon = [BCN_FindBeacon initRegion];
+    [self.find_beacon startMonitoringPlease];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableInfo:) name:@"notificationName" object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,30 +63,30 @@
 }
 
 
-- (IBAction)Back:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
-}
+
 
 
 /********************* TABLE VIEW **************************/
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    // Return the number of sections.
-//    return 0;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 2;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    CLBeacon *aux = [[CLBeacon alloc] init];
-    aux = [self.myMutArray firstObject];
-    if ([aux.major intValue] == 4) {
-        return 1;
+    if (section == 0) {
+        return self.student.classes.count;
     }else{
-        return 0;
+        return newDisciplines.count;
     }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [SectionTitles objectAtIndex:section];
 }
 
 
@@ -69,31 +94,18 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MateriasAluno" forIndexPath:indexPath];
     
-    CLBeacon *aux = [[CLBeacon alloc] init];
-    aux = [self.myMutArray objectAtIndex:indexPath.row];
+    NSString *sectionTitle = [SectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionstudents = [infoToRow objectForKey:sectionTitle];
+    Discipline *aaa = [sectionstudents objectAtIndex:indexPath.row];
+    cell.textLabel.text = aaa.name;
+    cell.detailTextLabel.text = aaa.details;
     
-    if ([aux.major intValue] == 4 && [aux.minor intValue] == 4){
-        NSLog(@"%@ - %@",aux.major, self.myMutArray);
-        
-        
-        
-        if(aux.accuracy > 0) {
-            cell.textLabel.text = @"Calculo IV";
-            cell.detailTextLabel.text = @"Chamada liberada";
-        }else{
-            cell.textLabel.text = @"Calculo IV";
-            cell.detailTextLabel.text = @"Chamada liberada -1";
-        }
-        
+    if (!aaa.answer) {
+        [cell setBackgroundColor:[UIColor redColor]];
+    }else{
+        [cell setBackgroundColor:[UIColor greenColor]];
     }
-    
-    
-    //    cell.textLabel.text = aux.proximityUUID.UUIDString;
-    //    cell.detailTextLabel.text = [NSString stringWithFormat:@"Minor: %@, Major: %@, RSSI: %ld, Proximity: %ld, Accuracy: %f",[aux.minor stringValue],[aux.major stringValue], (long)aux.rssi, aux.proximity, aux.accuracy];
-    //    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    //    cell.detailTextLabel.numberOfLines = 3;
-    //    cell.detailTextLabel.text = self.detalhes[indexPath.row];
-    //    cell.imageView.image = self.imagens[indexPath.row];
+    //    [cell setBackgroundColor:[UIColor yellowColor]];
     
     return cell;
 }
@@ -107,11 +119,41 @@
     if(indexPath.row == 0 && indexPath.section == 0 && [cell.textLabel.text isEqualToString:@"Calculo IV"]){
         
         NSLog(@"respondido!");
-        self.bcn = [BCN_BeBeacon initBeaconWithMajor:5 minor:5];
-        [self.bcn startRangingPlease];
+        self.be_beacon = [BCN_BeBeacon initBeaconWithMajor:self.student.major minor:self.student.minor];
+        [self.be_beacon startRangingPlease];
     }
     
     
+}
+
+- (void)reloadTableInfo:(NSNotification *)notification{
+    
+    CLBeacon *beac = [self.find_beacon.BeaconsFound firstObject];
+    //    NSLog(@"beac %d",[beac.major intValue]);
+    
+    Discipline *aaa = [self.student.classes objectAtIndex:1];
+    
+    
+    for (int i = 0 ; i < aaa.teachers.count; i++) {
+        TC_Teacher *bbb = [aaa.teachers objectAtIndex:i];
+        if ([beac.major intValue] == 0 && bbb.major == 15) {
+            NSLog(@"presente em %@",aaa.name);
+            aaa.answer = true;
+        }
+    }
+    
+    //pegar o major e minor recebido,ver quem é o professor, ver a hora da matéria, e ver qual matéria corresponde a tal hora
+    
+    //    self.userStudentAnswer = [notification object];
+    //    NSString *nameStudentAnswer = [NSString stringWithString:[Database getStudentWithMajor:self.userStudentAnswer.major Minor:self.userStudentAnswer.minor]];
+    //    NSLog(@"%@",nameStudentAnswer);
+    //    NSLog(@"%d",self.userStudentAnswer.major);
+    [self.tableView reloadData];
+}
+
+- (IBAction)Back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -119,7 +161,7 @@
     
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
         NSLog(@"Saiu do navigation Controller");
-        [self.bcn stopRangingPlease];
+        [self.be_beacon stopRangingPlease];
     }
 }
 

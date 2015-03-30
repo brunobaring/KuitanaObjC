@@ -12,6 +12,9 @@
 #import "TC_NavigationController.h"
 #import "TC_Teacher.h"
 #import "ST_Student.h"
+#import "ST_Guest.h"
+#import "ST_NavigationController.h"
+#import "Discipline.h"
 #import "Database.h"
 
 
@@ -34,34 +37,42 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    NSMutableArray *info = [Database checkLoginWithUsername:@"joaobrandao@gmail.com" Password:@"666"];
     
-    NSMutableArray *info = [Database checkLoginWithUsername:@"hendicoelho@gmail.com" Password:@"225"];
-    
-    if ([[[info objectAtIndex:0]objectForKey:@"status"] isEqualToString:@"aluno"]) {
-        //        ST_Student *teacher = [ST_Student initStudentWithArray:info];
-    }
-    
-    
-    if ([segue.identifier isEqualToString:@"sendUserTeacher"]) {
-        
+    if ([identifier isEqualToString:@"sendUserTeacher"]) {
         if ([[[info objectAtIndex:0]objectForKey:@"status"] isEqualToString:@"professor"]) {
             self.teacher = [TC_Teacher initTeacherWithArray:info];
+            return YES;
+        }else{
+            NSLog(@"Error:Não é PROFESSOR!");
+            return NO;
+        }
+    }else if ([identifier isEqualToString:@"sendUserStudent"]) {
+        if ([[[info objectAtIndex:0]objectForKey:@"status"] isEqualToString:@"aluno"]) {
+            self.student = [ST_Student initStudentWithArray:info];
+            return YES;
+        }else{
+            NSLog(@"Error:Não é ALUNO!");
+            return NO;
+        }
+    }
+    return NO;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([segue.identifier isEqualToString:@"sendUserTeacher"]) {
             TC_NavigationController *destViewController = [segue destinationViewController];
             TC_ClassList *classList = (TC_ClassList *) destViewController.topViewController;
             destViewController.teacher = self.teacher;
             [classList setTeacher:self.teacher];
-        }else{
-            NSLog(@"Error:Não é professor!");
-        }
     }
-    
     if ([segue.identifier isEqualToString:@"sendUserStudent"]) {
-        TC_NavigationController *destViewController = [segue destinationViewController];
-        TC_ClassList *classList = (TC_ClassList *) destViewController.topViewController;
-        //        [classList setUser:self.user];
-        //        destViewController.user = self.user;
-        //        destViewController.className = @"Aula do BEPiD";
+            ST_NavigationController *destViewController = [segue destinationViewController];
+            ST_Guest *guest = (ST_Guest *) destViewController.topViewController;
+            destViewController.student = self.student;
+            [guest setStudent:self.student];
     }
 }
 

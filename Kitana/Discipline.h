@@ -11,7 +11,9 @@
 
 @interface Discipline : NSObject
 
-+(instancetype)initWithName:(NSString *)name Detail:(NSString *)detail;
++(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc Teachers:(NSMutableArray *)stud;
++(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc Students:(NSMutableArray *)stud;
++(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc;
 
 @property NSString *name;
 @property NSString *abreviation;
@@ -21,6 +23,10 @@
 @property NSMutableArray *students;
 @property NSString *room;
 @property NSString *details; //provisorio. depois precisa separar entre as outras propriedades
-@property int id;
+@property NSMutableArray *teachers;
+@property BOOL *answer;
+@property int major;
+@property int minor;
+@property int ID;
 
 @end

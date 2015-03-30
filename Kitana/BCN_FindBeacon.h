@@ -14,7 +14,9 @@
 
 + (instancetype)initRegion;
 - (void)startMonitoringPlease;
-- (void)abc;
+
+
+@property (nonatomic) NSMutableArray *BeaconsFound;
 
 @property User *user;
 

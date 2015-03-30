@@ -29,7 +29,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="qbw-PT-QE7" kind="show" id="RfM-ZB-G05"/>
+                                    <segue destination="qbw-PT-QE7" kind="show" identifier="sendUserStudent" id="RfM-ZB-G05"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vp-S6-4dd">
@@ -61,7 +61,7 @@
         <!--Item 1-->
         <scene sceneID="2jn-ft-um5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qbw-PT-QE7" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qbw-PT-QE7" customClass="ST_NavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 1" id="kRc-Z1-e1R"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qpM-ei-ciI">

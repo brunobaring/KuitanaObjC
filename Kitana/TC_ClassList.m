@@ -15,8 +15,8 @@
 
 @interface TC_ClassList ()
 
-@property NSMutableDictionary* ClassList;
-
+@property NSString *className;
+@property NSString *classDetail;
 
 @end
 
@@ -55,6 +55,20 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+
+    UITableViewCell *aaa = [tableView cellForRowAtIndexPath:indexPath];
+
+    self.className = aaa.textLabel.text;
+    self.classDetail = aaa.detailTextLabel.text;
+    
+
+//    [self performSegueWithIdentifier: @"sendUser2" sender: self];
+    
+}
+
 - (IBAction)Back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
     }];
@@ -62,10 +76,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"sendUser2"]) {
+        UITableViewCell *cellSegue = [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
         TC_Guest_List *destViewController = segue.destinationViewController;
         destViewController.teacher = self.teacher;
-//        destViewController.className = [[self.teacher.classes objectForKey:@"Class"] objectAtIndex:0];
-//        destViewController.classDetail = [[self.teacher.classes objectForKey:@"Detail"] objectAtIndex:0];
+        destViewController.className = cellSegue.textLabel.text;
+        destViewController.classDetail = cellSegue.detailTextLabel.text;
     }
 }
 

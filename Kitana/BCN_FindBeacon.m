@@ -13,7 +13,6 @@
 
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (nonatomic) NSMutableArray *BeaconsFound;
 
 @end
 
@@ -22,7 +21,6 @@ int pbeaconsFoundCount = 0;
 
 - (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
     [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
-    
 }
 
 
@@ -62,21 +60,20 @@ int pbeaconsFoundCount = 0;
     [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
 }
 
--(void)abc{
-    NSArray *aaa = [[NSArray alloc]init];
-    NSLog(@"vou chamar hein!!!!!");
-    [self locationManager:self.locationManager didRangeBeacons:aaa inRegion:self.beaconRegion];
-    NSLog(@"ja chamei");
-}
-
-
 -(void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
     
     
     if(beacons.count > 0){
         
-                NSLog(@"%@",beacons);
+//                NSLog(@"%@",beacons);
         self.BeaconsFound = [NSMutableArray arrayWithArray:beacons];
+        for (int i = 0 ; i < self.BeaconsFound.count ; i++) {
+            CLBeacon *temp = [self.BeaconsFound objectAtIndex:i];
+            if (temp.accuracy < 0) {
+                [self.BeaconsFound removeObjectAtIndex:i];
+                NSLog(@"beacon bugado(duplicado) identificado e removido");
+            }
+        }
         
         CLBeacon *beacon = [[CLBeacon alloc] init];
         beacon = [beacons lastObject]; /// ATENCAO: COM O LASTOBJECT, SÓ É DETECTADO 1(O ÚLTIMO) BEACON NOVO.
@@ -105,8 +102,6 @@ int pbeaconsFoundCount = 0;
         }
         pbeaconsFoundCount = (int)beacons.count;
         
-    }else{
-        NSLog(@"array beacons vazio");
     }
 }
 

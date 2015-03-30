@@ -11,4 +11,11 @@
 
 @interface ST_Student : User
 
++(instancetype)initStudent:(NSObject *)user;
++(instancetype)initStudentWithArray:(NSMutableArray *)info;
+
+
+@property (nonatomic) int major;
+@property (nonatomic) int minor;
+
 @end

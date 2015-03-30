@@ -15,6 +15,6 @@
 
 +(instancetype)initTeacherWithArray:(NSMutableArray *)info;
 
-
++(instancetype)initTeacher:(NSObject *)user;
 
 @end

@@ -27,13 +27,27 @@
     teacher.matricula = [[info objectAtIndex:1]objectForKey:@"Matricula"];
     teacher.name = [[info objectAtIndex:1]objectForKey:@"Name"];
     teacher.classes = [[NSMutableArray alloc]init];
-    NSMutableArray *AUXdisciplines = [[NSMutableArray alloc]initWithArray:[info objectAtIndex:2]];
-    for ( int i = 0 ; i < AUXdisciplines.count ; i++) {
-        NSString *name = [[AUXdisciplines objectAtIndex:i]objectForKey:@"disciplineName"];
-        NSString *detail = [[AUXdisciplines objectAtIndex:i]objectForKey:@"Detail"];
-        Discipline *discipline = [Discipline initWithName:name Detail:detail];
+    NSMutableArray *disciplinesFromWeb = [[NSMutableArray alloc]initWithArray:[info objectAtIndex:2]];
+    NSMutableArray *studentsAllClasses = [[NSMutableArray alloc]initWithArray:[info objectAtIndex:3]];
+
+    for ( int i = 0 ; i < disciplinesFromWeb.count ; i++) {
+        NSObject *disciplines = [disciplinesFromWeb objectAtIndex:i];
+        NSMutableArray *students = [studentsAllClasses objectAtIndex:i];
+        Discipline *discipline = [Discipline initDisciplineWithArrayDiscipline:disciplines Students:students];
         [teacher.classes addObject:discipline];
     }
+    
+    return teacher;
+}
+
++(instancetype)initTeacher:(NSObject *)user{
+    TC_Teacher *teacher = [[TC_Teacher alloc]init];
+    teacher.major = [[user valueForKey:@"tcMajor"]intValue];
+    teacher.minor = [[user valueForKey:@"tcMinor"]intValue];
+    teacher.email = [user valueForKey:@"tcEmail"];
+    teacher.name = [user valueForKey:@"tcName"];
+    teacher.matricula = [user valueForKey:@"tcMatricula"];
+    
     return teacher;
 }
 

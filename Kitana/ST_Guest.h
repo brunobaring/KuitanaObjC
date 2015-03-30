@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "User.h"
+#import "ST_Student.h"
 
 
 @interface ST_Guest : UITableViewController <UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate>
@@ -26,5 +27,5 @@
 
 @property (nonatomic, copy, readonly) NSArray *uuid_disponiveis;
 
-@property User *user;
+@property ST_Student *student;
 @end

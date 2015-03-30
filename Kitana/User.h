@@ -10,15 +10,14 @@
 
 @interface User : NSObject
 
-//+(instancetype)initUserWithMajor:(int)major Minor:(int)minor Name:(NSString *)name Email:(NSString *)email;
 +(instancetype)initUserWithMajor:(int)major Minor:(int)minor;
 
 @property NSMutableArray *classes;
 
-@property (nonatomic) int major;
-@property (nonatomic) int minor;
 @property (nonatomic) NSString *email;
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *matricula;
+@property (nonatomic) int major;
+@property (nonatomic) int minor;
 
 @end
