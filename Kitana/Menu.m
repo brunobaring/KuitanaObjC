@@ -38,7 +38,8 @@
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    NSMutableArray *info = [Database checkLoginWithUsername:@"joaobrandao@gmail.com" Password:@"666"];
+    NSMutableArray *info = [Database checkLoginWithUsername:@"brunobaring@gmail.com" Password:@"555"];
+//    NSMutableArray *info = [Database checkLoginWithUsername:@"joaobrandao@gmail.com" Password:@"666"];
     
     if ([identifier isEqualToString:@"sendUserTeacher"]) {
         if ([[[info objectAtIndex:0]objectForKey:@"status"] isEqualToString:@"professor"]) {

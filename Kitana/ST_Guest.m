@@ -24,6 +24,7 @@
 @property BCN_BeBeacon *be_beacon;
 @property BCN_FindBeacon *find_beacon;
 @property NSMutableArray *classesToRows;
+@property NSTimer *st_timer;
 @end
 
 @implementation ST_Guest
@@ -48,14 +49,24 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    //    self.be_beacon = [BCN_BeBeacon initBeaconWithMajor:self.student.major minor:self.student.minor];
+    self.be_beacon = [BCN_BeBeacon initBeaconWithMajor:self.student.major minor:self.student.minor];
     
     self.find_beacon = [BCN_FindBeacon initRegion];
     [self.find_beacon startMonitoringPlease];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableInfo:) name:@"notificationName" object:nil];
     
+    self.st_timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(abc)
+                                   userInfo:nil
+                                    repeats:YES];
 }
+
+-(void) abc{
+    [self.be_beacon startRangingPlease];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -128,30 +139,34 @@
 
 - (void)reloadTableInfo:(NSNotification *)notification{
     
-    CLBeacon *beac = [self.find_beacon.BeaconsFound firstObject];
+    
     //    NSLog(@"beac %d",[beac.major intValue]);
     
-    Discipline *aaa = [self.student.classes objectAtIndex:1];
-    
-    
-    for (int i = 0 ; i < aaa.teachers.count; i++) {
-        TC_Teacher *bbb = [aaa.teachers objectAtIndex:i];
-        if ([beac.major intValue] == 0 && bbb.major == 15) {
-            NSLog(@"presente em %@",aaa.name);
-            aaa.answer = true;
+//    NSLog(@"%@",self.find_beacon.BeaconsFound);
+
+    for (int k = 0 ; k < self.find_beacon.BeaconsFound.count; k++) {
+        CLBeacon *beac = [self.find_beacon.BeaconsFound objectAtIndex:k];
+        for (int j = 0 ; j < self.student.classes.count; j++){
+            Discipline *aaa = [self.student.classes objectAtIndex:j];
+            for (int i = 0 ; i < aaa.teachers.count; i++) {
+                TC_Teacher *bbb = [aaa.teachers objectAtIndex:i];
+                if ([beac.major intValue] == bbb.major) {
+                    aaa.answer = true;
+                    NSLog(@"#######################################################################################################################################################################################");
+                }
+            }
         }
     }
     
     //pegar o major e minor recebido,ver quem é o professor, ver a hora da matéria, e ver qual matéria corresponde a tal hora
+    //falta pegar a matéria pelo id tb
     
-    //    self.userStudentAnswer = [notification object];
-    //    NSString *nameStudentAnswer = [NSString stringWithString:[Database getStudentWithMajor:self.userStudentAnswer.major Minor:self.userStudentAnswer.minor]];
-    //    NSLog(@"%@",nameStudentAnswer);
-    //    NSLog(@"%d",self.userStudentAnswer.major);
     [self.tableView reloadData];
 }
 
 - (IBAction)Back:(id)sender {
+    [self.be_beacon stopRangingPlease];
+    [self.st_timer invalidate];
     [self dismissViewControllerAnimated:YES completion:^{
     }];
 }
@@ -162,6 +177,7 @@
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
         NSLog(@"Saiu do navigation Controller");
         [self.be_beacon stopRangingPlease];
+        [self.st_timer invalidate];
     }
 }
 

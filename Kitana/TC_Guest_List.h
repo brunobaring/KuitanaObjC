@@ -35,6 +35,6 @@
 
 //@property (nonatomic, copy, readonly) NSArray *uuid_disponiveis;
 
-
+-(void) abc;
 
 @end

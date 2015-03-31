@@ -25,9 +25,12 @@
 }
 
 @property (nonatomic) NSMutableArray *StudentsBeaconFound;
-@property BCN_BeBeacon *bcn;
-@property BCN_FindBeacon *findBeacon;
-@property NSMutableArray *studentsToRows;
+@property BCN_BeBeacon *be_beacon;
+@property BCN_FindBeacon *find_beacon;
+@property NSMutableArray *studentsNotPresent;
+@property NSMutableArray *studentsPending;
+@property NSMutableArray *studentsPresent;
+@property NSTimer *timer;
 @end
 
 @implementation TC_Guest_List
@@ -37,25 +40,27 @@ int a=0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.studentsToRows = [[NSMutableArray alloc]init];
-    self.studentsToRows = [self getStudentToRowsFromClassName:self.className ClassDetail:self.classDetail];
+    self.studentsPresent = [[NSMutableArray alloc]init];
+    self.studentsPending = [[NSMutableArray alloc]init];
+    self.studentsNotPresent = [[NSMutableArray alloc]init];
+    self.studentsNotPresent = [self getStudentsNotPresentFromClassName:self.className ClassDetail:self.classDetail];
     
     NSDictionary *AUXstudents = @{@"" : @[@""],
-                                  @"Aguardando Confirmação" : @[],
-                                  @"Não-Presentes" : self.studentsToRows,
-                                  @"Presentes" : @[]};
+                                  @"Aguardando Confirmação" : self.studentsPending,
+                                  @"Não-Presentes" : self.studentsNotPresent,
+                                  @"Presentes" : self.studentsPresent};
     
     infoToRow = [NSMutableDictionary dictionaryWithDictionary:AUXstudents];
     
     SectionTitles = [[infoToRow allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 
-    self.bcn = [BCN_BeBeacon initBeaconWithMajor:4 minor:4];
-    self.findBeacon = [BCN_FindBeacon initRegion];
+    self.be_beacon = [BCN_BeBeacon initBeaconWithMajor:self.teacher.major minor:self.teacher.minor];
+    self.find_beacon = [BCN_FindBeacon initRegion];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableInfo:) name:@"notificationName" object:nil];
 }
 
-- (NSMutableArray *)getStudentToRowsFromClassName:(NSString *)class_name ClassDetail:(NSString *)class_detail{
+- (NSMutableArray *)getStudentsNotPresentFromClassName:(NSString *)class_name ClassDetail:(NSString *)class_detail{
     NSMutableArray *eee = [[NSMutableArray alloc] init];
     NSMutableArray *aaa = self.teacher.classes;
     for (int i  = 0 ; i < aaa.count; i++) {
@@ -74,8 +79,30 @@ int a=0;
 }
 
 
-
 - (void)reloadTableInfo:(NSNotification *)notification{
+    [self.find_beacon startMonitoringPlease];
+    [self.be_beacon startRangingPlease];
+//    NSLog(@"%@",self.find_beacon.BeaconsFound);
+    
+
+    for (int i = 0 ; i < self.find_beacon.BeaconsFound.count; i++) {
+        CLBeacon *aaa = [self.find_beacon.BeaconsFound objectAtIndex:i];
+        for (int j = 0 ; j < self.teacher.classes.count ; j++) {
+            Discipline *bbb = [self.teacher.classes objectAtIndex:j];
+            if ([bbb.name isEqualToString:self.className]) {
+                for (int k = 0 ; k < bbb.students.count; k++) {
+                    ST_Student * ccc = [bbb.students objectAtIndex:k];
+                    if (ccc.major == [aaa.major intValue] && ![self.studentsPending containsObject:ccc.name] && ![self.studentsPresent containsObject:ccc.name]) {
+                        ///achou o aluno
+                        ///remover o nome do nao presente
+                        [self.studentsNotPresent removeObject:ccc.name];
+                        [self.studentsPending addObject:ccc.name];
+                    }
+                }
+            }
+        }
+    }
+    
     //    self.userStudentAnswer = [notification object];
     //    NSString *nameStudentAnswer = [NSString stringWithString:[Database getStudentWithMajor:self.userStudentAnswer.major Minor:self.userStudentAnswer.minor]];
     //    NSLog(@"%@",nameStudentAnswer);
@@ -132,7 +159,7 @@ int a=0;
         
         UIImageView *iconImage = [[UIImageView alloc] init];
         iconImage.frame = CGRectMake(cell.bounds.size.width-54,5,49,60);
-        //        iconImage.image = [UIImage imageNamed:[student stringByAppendingString:@".jpg"]];
+        iconImage.image = [UIImage imageNamed:[student stringByAppendingString:@".jpg"]];
         [cell.contentView addSubview:iconImage];
         
         return cell;
@@ -154,10 +181,27 @@ int a=0;
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     
     if(indexPath.row == 0 && indexPath.section == 0){
-        [self.bcn startRangingPlease];
-        [self.findBeacon startMonitoringPlease];
+//        self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+//                                         target:self
+//                                       selector:@selector(abc)
+//                                       userInfo:nil
+//                        nsti                repeats:YES];
+        
+        
+//        [self.be_beacon startRangingPlease];
+        [self.find_beacon startMonitoringPlease];
     }
     
+    if(indexPath.section == 1){
+        NSString *aa = [self.studentsPending objectAtIndex:indexPath.row];
+        [self.studentsPending removeObject:aa];
+        [self.studentsPresent addObject:aa];
+        [self.tableView reloadData];
+    }
+    
+}
+-(void) abc{
+    [self.be_beacon startRangingPlease];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -165,8 +209,10 @@ int a=0;
     
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
 //        NSLog(@"Saiu do navigation Controller");
-        [self.bcn stopRangingPlease];
+        [self.be_beacon stopRangingPlease];
+        [self.timer invalidate];
     }
+    
 }
 
 

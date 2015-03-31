@@ -42,11 +42,11 @@
 
 +(instancetype)initTeacher:(NSObject *)user{
     TC_Teacher *teacher = [[TC_Teacher alloc]init];
-    teacher.major = [[user valueForKey:@"tcMajor"]intValue];
-    teacher.minor = [[user valueForKey:@"tcMinor"]intValue];
-    teacher.email = [user valueForKey:@"tcEmail"];
-    teacher.name = [user valueForKey:@"tcName"];
-    teacher.matricula = [user valueForKey:@"tcMatricula"];
+    teacher.major = [[user valueForKey:@"Major"]intValue];
+    teacher.minor = [[user valueForKey:@"Minor"]intValue];
+    teacher.email = [user valueForKey:@"Email"];
+    teacher.name = [user valueForKey:@"Name"];
+    teacher.matricula = [user valueForKey:@"Matricula"];
     
     return teacher;
 }

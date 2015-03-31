@@ -18,7 +18,7 @@
 
 @property (nonatomic) NSMutableArray *BeaconsFound;
 
-@property User *user;
+
 
 @end
 

@@ -28,4 +28,5 @@
 @property (nonatomic, copy, readonly) NSArray *uuid_disponiveis;
 
 @property ST_Student *student;
+-(void) abc;
 @end

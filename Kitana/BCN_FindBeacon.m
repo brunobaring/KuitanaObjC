@@ -30,7 +30,7 @@ int pbeaconsFoundCount = 0;
 
 + (instancetype)initRegion {
     BCN_FindBeacon *regiao = [[BCN_FindBeacon alloc] init];
-
+    
     return regiao;
 }
 
@@ -47,7 +47,6 @@ int pbeaconsFoundCount = 0;
     [self locationManager:self.locationManager didStartMonitoringForRegion:self.beaconRegion];
     
     pbeaconsFoundCount = 0;
-    self.user = [[User alloc]init];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
@@ -62,45 +61,46 @@ int pbeaconsFoundCount = 0;
 
 -(void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
     
-    
     if(beacons.count > 0){
         
-//                NSLog(@"%@",beacons);
         self.BeaconsFound = [NSMutableArray arrayWithArray:beacons];
-        for (int i = 0 ; i < self.BeaconsFound.count ; i++) {
-            CLBeacon *temp = [self.BeaconsFound objectAtIndex:i];
-            if (temp.accuracy < 0) {
-                [self.BeaconsFound removeObjectAtIndex:i];
-                NSLog(@"beacon bugado(duplicado) identificado e removido");
-            }
-        }
         
-        CLBeacon *beacon = [[CLBeacon alloc] init];
-        beacon = [beacons lastObject]; /// ATENCAO: COM O LASTOBJECT, SÓ É DETECTADO 1(O ÚLTIMO) BEACON NOVO.
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationName" object:nil];
         
-        if (beacon.proximity == CLProximityUnknown) {
-        } else if (beacon.proximity == CLProximityImmediate) {
-        } else if (beacon.proximity == CLProximityNear) {
-        } else if (beacon.proximity == CLProximityFar) {
-        }
-        
-        //verificar se esse SORT está funcionando
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"major" ascending:YES];
-        [self.BeaconsFound sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        //        for (int i = 0 ; i < self.BeaconsFound.count ; i++) {
+        //            CLBeacon *temp = [self.BeaconsFound objectAtIndex:i];
+        //            if (temp.accuracy < 0) {
+        //                [self.BeaconsFound removeObjectAtIndex:i];
+        ////                NSLog(@"beacon bugado(duplicado) identificado e removido");
+        //            }
+        //        }
+        //
+        //        NSLog(@"%@",beacons);
         
         
         
-        if (pbeaconsFoundCount != (int)beacons.count) {
-            if ([beacon.major intValue] < 20 && [beacon.minor intValue] < 20) {
-                self.user.major = [beacon.major intValue];
-                self.user.minor = [beacon.minor intValue];
-                [[NSNotificationCenter defaultCenter]
-                 postNotificationName:@"notificationName"
-                 object:self.user];
-            }
-            
-        }
-        pbeaconsFoundCount = (int)beacons.count;
+        //        CLBeacon *beacon = [[CLBeacon alloc] init];
+        //        beacon = [beacons lastObject]; /// ATENCAO: COM O LASTOBJECT, SÓ É DETECTADO 1(O ÚLTIMO) BEACON NOVO.
+        //
+        //        if (beacon.proximity == CLProximityUnknown) {
+        //        } else if (beacon.proximity == CLProximityImmediate) {
+        //        } else if (beacon.proximity == CLProximityNear) {
+        //        } else if (beacon.proximity == CLProximityFar) {
+        //        }
+        //
+        //        //verificar se esse SORT está funcionando
+        //        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"major" ascending:YES];
+        //        [self.BeaconsFound sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        
+        
+        
+        //        if (pbeaconsFoundCount != (int)beacons.count) {
+        //            NSLog(@"fgfgfg");
+        //                [[NSNotificationCenter defaultCenter]
+        //                 postNotificationName:@"notificationName"
+        //                 object:nil];
+        //        }
+        //        pbeaconsFoundCount = (int)beacons.count;
         
     }
 }

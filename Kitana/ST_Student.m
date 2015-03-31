@@ -13,11 +13,11 @@
 
 +(instancetype)initStudent:(NSObject *)user{
     ST_Student *student = [[ST_Student alloc]init];
-    student.major = [[user valueForKey:@"stMajor"]intValue];
-    student.minor = [[user valueForKey:@"stMinor"]intValue];
-    student.email = [user valueForKey:@"stEmail"];
-    student.name = [user valueForKey:@"stName"];
-    student.matricula = [user valueForKey:@"stMatricula"];
+    student.major = [[user valueForKey:@"Major"]intValue];
+    student.minor = [[user valueForKey:@"Minor"]intValue];
+    student.email = [user valueForKey:@"Email"];
+    student.name = [user valueForKey:@"Name"];
+    student.matricula = [user valueForKey:@"Matricula"];
 
     return student;
 }
