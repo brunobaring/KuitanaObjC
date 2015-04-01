@@ -23,7 +23,9 @@
 @implementation TC_ClassList
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];    //253 218 57 //249 176 30
+
+    self.tableView.backgroundColor = [UIColor colorWithRed:254/255.0f green:231/255.0f blue:113/255.0f alpha:255.0/255.0f];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +53,9 @@
     cell.detailTextLabel.text = disc.details;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 3;
+    //253 218 57
+    [cell setBackgroundColor:[UIColor colorWithRed:247/255.0f green:190/255.0f blue:87/255.0f alpha:1.0f]];
+//    [cell setBackgroundColor:[UIColor redColor]];
     
     return cell;
 }

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Menu-->
@@ -17,46 +18,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t8W-bT-q7D">
-                                <rect key="frame" x="130" y="338" width="92" height="30"/>
-                                <state key="normal" title="Criar eventos">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4j-ha-Hy1">
-                                <rect key="frame" x="130" y="207" width="146" height="30"/>
-                                <state key="normal" title="Responder Chamada">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="telacadastro.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qND-8E-Cuc">
+                                <rect key="frame" x="0.0" y="-8" width="600" height="608"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="6" background="Carol Gradel.jpg" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7OM-eJ-8ef">
+                                <rect key="frame" x="0.0" y="204" width="600" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="7gY-9y-Qgb"/>
+                                </constraints>
+                                <color key="textColor" red="0.30112427678683129" green="0.30581651022157269" blue="0.32566798499898997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="euq-Ji-qB4">
+                                <rect key="frame" x="0.0" y="244" width="600" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3fm-3L-omD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVg-ef-g2E">
+                                <rect key="frame" x="0.0" y="285" width="600" height="30"/>
+                                <color key="backgroundColor" red="0.97647058823529409" green="0.69411764705882351" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="tintColor" red="0.95686274510000002" green="0.64313725489999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="LOG IN">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.99607843137254903" green="0.90588235294117647" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="qbw-PT-QE7" kind="show" identifier="sendUserStudent" id="RfM-ZB-G05"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vp-S6-4dd">
-                                <rect key="frame" x="182" y="406" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYy-U7-CVu">
-                                <rect key="frame" x="130" y="266" width="109" height="30"/>
-                                <state key="normal" title="Monitorar Aulas">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BJb-NR-Mg1" kind="show" identifier="sendUserTeacher" id="m0U-1X-UPZ"/>
+                                    <action selector="WillLogin:" destination="xvV-Lt-kLI" eventType="touchUpInside" id="Kkd-xt-P2B"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="qND-8E-Cuc" firstAttribute="top" secondItem="nem-fX-Hun" secondAttribute="topMargin" constant="-8" id="47Y-CQ-GCf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7OM-eJ-8ef" secondAttribute="trailing" constant="-16" id="7nq-Uw-PHe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="euq-Ji-qB4" secondAttribute="trailing" constant="-16" id="8bv-Yx-iHo"/>
+                            <constraint firstItem="7OM-eJ-8ef" firstAttribute="leading" secondItem="nem-fX-Hun" secondAttribute="leadingMargin" constant="-16" id="Ayf-sh-XQI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qND-8E-Cuc" secondAttribute="trailing" constant="-16" id="J9a-AV-edY"/>
+                            <constraint firstAttribute="centerY" secondItem="xVg-ef-g2E" secondAttribute="centerY" id="R4s-1J-Wgo"/>
+                            <constraint firstItem="qND-8E-Cuc" firstAttribute="leading" secondItem="nem-fX-Hun" secondAttribute="leadingMargin" constant="-16" id="Sho-eD-tu7"/>
+                            <constraint firstItem="qND-8E-Cuc" firstAttribute="top" secondItem="nem-fX-Hun" secondAttribute="topMargin" constant="-8" id="bJM-Xv-ijb"/>
+                            <constraint firstItem="xVg-ef-g2E" firstAttribute="top" secondItem="euq-Ji-qB4" secondAttribute="bottom" constant="1" id="biB-6a-I8z"/>
+                            <constraint firstItem="xVg-ef-g2E" firstAttribute="leading" secondItem="nem-fX-Hun" secondAttribute="leadingMargin" constant="-16" id="gvL-Iw-nYr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xVg-ef-g2E" secondAttribute="trailing" constant="-16" id="jcw-jp-BSQ"/>
+                            <constraint firstItem="qND-8E-Cuc" firstAttribute="leading" secondItem="nem-fX-Hun" secondAttribute="leadingMargin" constant="-16" id="oyB-Tr-MH0"/>
+                            <constraint firstItem="euq-Ji-qB4" firstAttribute="top" secondItem="7OM-eJ-8ef" secondAttribute="bottom" id="wTe-ah-ap4"/>
+                            <constraint firstItem="GUs-A0-2gg" firstAttribute="top" secondItem="qND-8E-Cuc" secondAttribute="bottom" id="xfT-wW-oix"/>
+                            <constraint firstItem="euq-Ji-qB4" firstAttribute="leading" secondItem="nem-fX-Hun" secondAttribute="leadingMargin" constant="-16" id="yii-Gm-XS5"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="major" destination="4Vp-S6-4dd" id="XoJ-hV-P3b"/>
+                        <outlet property="Email_login" destination="7OM-eJ-8ef" id="Sh1-Aa-Ent"/>
+                        <outlet property="Password_login" destination="euq-Ji-qB4" id="FHL-cF-EuX"/>
+                        <outlet property="backgroundImageView" destination="qND-8E-Cuc" id="qdV-st-2AG"/>
+                        <segue destination="qbw-PT-QE7" kind="show" identifier="sendUserStudent" id="Mpt-I8-ReZ"/>
+                        <segue destination="BJb-NR-Mg1" kind="show" identifier="sendUserTeacher" id="f1P-W5-O2f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbf-US-ZVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="723" y="-3"/>
+            <point key="canvasLocation" x="673" y="38"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="2jn-ft-um5">
@@ -151,8 +178,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.97647058823529409" green="0.69019607843137254" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MateriasAluno" textLabel="6h3-yu-Bav" detailTextLabel="5iD-Yt-A3s" style="IBUITableViewCellStyleSubtitle" id="Mj0-hJ-Odk">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationLevel="1" indentationWidth="10" reuseIdentifier="MateriasAluno" textLabel="6h3-yu-Bav" detailTextLabel="5iD-Yt-A3s" style="IBUITableViewCellStyleSubtitle" id="Mj0-hJ-Odk">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mj0-hJ-Odk" id="chU-ci-KNy">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -200,7 +229,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="status" textLabel="UHg-F6-ulx" style="IBUITableViewCellStyleDefault" id="KO8-ga-iYV">
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="status" textLabel="UHg-F6-ulx" style="IBUITableViewCellStyleDefault" id="KO8-ga-iYV">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KO8-ga-iYV" id="QTX-kW-cOU">
@@ -214,8 +243,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="tintColor" red="0.99215686270000003" green="0.85490196080000003" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="jbh" rowHeight="70" id="0mZ-bk-IjX">
+                            <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="jbh" rowHeight="70" id="0mZ-bk-IjX">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0mZ-bk-IjX" id="g1o-lA-86R">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -236,4 +266,8 @@
             <point key="canvasLocation" x="2903" y="450"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Carol Gradel.jpg" width="640" height="640"/>
+        <image name="telacadastro.jpg" width="243" height="430.94610595703125"/>
+    </resources>
 </document>

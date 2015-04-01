@@ -11,16 +11,16 @@
 
 @interface Database : NSObject
 
-+(NSMutableDictionary *)getClassesFromTeacherMajor:(int)major Minor:(int)minor;
+//+(NSMutableDictionary *)getClassesFromTeacherMajor:(int)major Minor:(int)minor;
+//
+//+(NSMutableArray *)getStudentsFromClassOfTeacherWithTeacherMajor:(int)major TeacherMinor:(int)minor ClassName:(NSString *)className Detail:(NSString *)classDetail;
+//
+//+(ST_Student *)getStudentWithUser:(User *)user;
+//
+//+(ST_Student *)getStudentNameWithMajor:(int)major Minor:(int)minor;
+//
+//+ (NSMutableDictionary *)moveUserBetweenSectionsWithDictionary:(NSMutableDictionary *)dict userName:(NSString *)userName from:(NSString *)fromSect to:(NSString *)toSect;
 
-+(NSMutableArray *)getStudentsFromClassOfTeacherWithTeacherMajor:(int)major TeacherMinor:(int)minor ClassName:(NSString *)className Detail:(NSString *)classDetail;
-
-+(ST_Student *)getStudentWithUser:(User *)user;
-
-+(ST_Student *)getStudentNameWithMajor:(int)major Minor:(int)minor;
-
-+ (NSMutableDictionary *)moveUserBetweenSectionsWithDictionary:(NSMutableDictionary *)dict userName:(NSString *)userName from:(NSString *)fromSect to:(NSString *)toSect;
-
-+ (NSMutableArray *)checkLoginWithUsername:(NSString *)email Password:(NSString *)pass;
++ (NSMutableArray *)checkLoginWithEmail:(NSString *)email Password:(NSString *)pass;
 
 @end

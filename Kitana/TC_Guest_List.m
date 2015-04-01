@@ -40,6 +40,7 @@ int a=0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     self.studentsPresent = [[NSMutableArray alloc]init];
     self.studentsPending = [[NSMutableArray alloc]init];
     self.studentsNotPresent = [[NSMutableArray alloc]init];
@@ -53,11 +54,14 @@ int a=0;
     infoToRow = [NSMutableDictionary dictionaryWithDictionary:AUXstudents];
     
     SectionTitles = [[infoToRow allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-
+    
     self.be_beacon = [BCN_BeBeacon initBeaconWithMajor:self.teacher.major minor:self.teacher.minor];
     self.find_beacon = [BCN_FindBeacon initRegion];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableInfo:) name:@"notificationName" object:nil];
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:254/255.0f green:231/255.0f blue:113/255.0f alpha:255.0/255.0f];
+
 }
 
 - (NSMutableArray *)getStudentsNotPresentFromClassName:(NSString *)class_name ClassDetail:(NSString *)class_detail{
@@ -82,9 +86,9 @@ int a=0;
 - (void)reloadTableInfo:(NSNotification *)notification{
     [self.find_beacon startMonitoringPlease];
     [self.be_beacon startRangingPlease];
-//    NSLog(@"%@",self.find_beacon.BeaconsFound);
+    //    NSLog(@"%@",self.find_beacon.BeaconsFound);
     
-
+    
     for (int i = 0 ; i < self.find_beacon.BeaconsFound.count; i++) {
         CLBeacon *aaa = [self.find_beacon.BeaconsFound objectAtIndex:i];
         for (int j = 0 ; j < self.teacher.classes.count ; j++) {
@@ -126,7 +130,7 @@ int a=0;
 {
     NSString *sectionTitle = [SectionTitles objectAtIndex:section];
     NSArray *sectionstudents = [infoToRow objectForKey:sectionTitle];
-//    NSLog(@"%ld",(long)section);
+    //    NSLog(@"%ld",(long)section);
     return [sectionstudents count];
 }
 
@@ -140,9 +144,17 @@ int a=0;
     if(indexPath.row == 0 && indexPath.section == 0){
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"status" forIndexPath:indexPath];
-        cell.textLabel.text = @"tap to chamada";
-        cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        cell.detailTextLabel.numberOfLines = 3;
+        cell.textLabel.text = @"";
+        cell.backgroundColor = [UIColor clearColor];
+        cell.opaque = NO;
+        UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 156, 170)];
+        av.image = [UIImage imageNamed:@"pressbuttonout.png"];
+        UIImageView *av1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 156, 170)];
+        av1.image = [UIImage imageNamed:@"pressbuttonin.png"];
+        cell.backgroundView = av;
+        cell.selectedBackgroundView = av1;
+        av.contentMode = UIViewContentModeCenter;
+        av1.contentMode = UIViewContentModeCenter;
         return cell;
         
     }else{
@@ -156,11 +168,13 @@ int a=0;
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
         cell.textLabel.textAlignment = NSTextAlignmentNatural;
         cell.textLabel.text = student;
+        [cell setBackgroundColor:[UIColor colorWithRed:247/255.0f green:190/255.0f blue:87/255.0f alpha:1.0f]];
+
         
-        UIImageView *iconImage = [[UIImageView alloc] init];
-        iconImage.frame = CGRectMake(cell.bounds.size.width-54,5,49,60);
-        iconImage.image = [UIImage imageNamed:[student stringByAppendingString:@".jpg"]];
-        [cell.contentView addSubview:iconImage];
+//        UIImageView *iconImage = [[UIImageView alloc] init];
+//        iconImage.frame = CGRectMake(cell.bounds.size.width-54,5,49,60);
+//        iconImage.image = [UIImage imageNamed:[student stringByAppendingString:@".jpg"]];
+//        [cell.contentView addSubview:iconImage];
         
         return cell;
     }
@@ -168,7 +182,11 @@ int a=0;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        return 180;
+    }else{
+        return 50;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -181,14 +199,14 @@ int a=0;
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     
     if(indexPath.row == 0 && indexPath.section == 0){
-//        self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
-//                                         target:self
-//                                       selector:@selector(abc)
-//                                       userInfo:nil
-//                        nsti                repeats:YES];
+        //        self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+        //                                         target:self
+        //                                       selector:@selector(abc)
+        //                                       userInfo:nil
+        //                        nsti                repeats:YES];
         
         
-//        [self.be_beacon startRangingPlease];
+        //        [self.be_beacon startRangingPlease];
         [self.find_beacon startMonitoringPlease];
     }
     
@@ -208,7 +226,7 @@ int a=0;
     [super viewWillDisappear:animated];
     
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
-//        NSLog(@"Saiu do navigation Controller");
+        //        NSLog(@"Saiu do navigation Controller");
         [self.be_beacon stopRangingPlease];
         [self.timer invalidate];
     }

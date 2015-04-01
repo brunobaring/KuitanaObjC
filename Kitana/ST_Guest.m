@@ -111,6 +111,7 @@
     cell.textLabel.text = aaa.name;
     cell.detailTextLabel.text = aaa.details;
     
+    
     if (!aaa.answer) {
         [cell setBackgroundColor:[UIColor redColor]];
     }else{
@@ -127,6 +128,7 @@
     
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     
+    
     if(indexPath.row == 0 && indexPath.section == 0 && [cell.textLabel.text isEqualToString:@"Calculo IV"]){
         
         NSLog(@"respondido!");
@@ -134,7 +136,8 @@
         [self.be_beacon startRangingPlease];
     }
     
-    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+
 }
 
 - (void)reloadTableInfo:(NSNotification *)notification{

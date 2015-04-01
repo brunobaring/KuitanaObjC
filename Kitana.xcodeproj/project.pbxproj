@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2E00939F1AC0CE3900A7734A /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E00939E1AC0CE3900A7734A /* Database.m */; };
+		2E2341B71ACAE92A00D5D00D /* telacadastro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E2341B61ACAE92A00D5D00D /* telacadastro.jpg */; };
+		2E2341BA1ACB8FB900D5D00D /* pressbuttonin.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E2341B81ACB8FB900D5D00D /* pressbuttonin.png */; };
+		2E2341BB1ACB8FB900D5D00D /* pressbuttonout.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E2341B91ACB8FB900D5D00D /* pressbuttonout.png */; };
 		2E2E254C1AAF3A5700E95E44 /* ST_Guest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E254B1AAF3A5700E95E44 /* ST_Guest.m */; };
 		2E2E254F1AAF435000E95E44 /* BCN_BeBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E254E1AAF435000E95E44 /* BCN_BeBeacon.m */; };
 		2E2E25521AAF9CFF00E95E44 /* TC_ClassList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E25511AAF9CFF00E95E44 /* TC_ClassList.m */; };
@@ -45,6 +48,9 @@
 /* Begin PBXFileReference section */
 		2E00939D1AC0CE3900A7734A /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		2E00939E1AC0CE3900A7734A /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		2E2341B61ACAE92A00D5D00D /* telacadastro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = telacadastro.jpg; sourceTree = "<group>"; };
+		2E2341B81ACB8FB900D5D00D /* pressbuttonin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pressbuttonin.png; sourceTree = "<group>"; };
+		2E2341B91ACB8FB900D5D00D /* pressbuttonout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pressbuttonout.png; sourceTree = "<group>"; };
 		2E2E254A1AAF3A5700E95E44 /* ST_Guest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ST_Guest.h; sourceTree = "<group>"; };
 		2E2E254B1AAF3A5700E95E44 /* ST_Guest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ST_Guest.m; sourceTree = "<group>"; };
 		2E2E254D1AAF435000E95E44 /* BCN_BeBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCN_BeBeacon.h; sourceTree = "<group>"; };
@@ -182,6 +188,9 @@
 				2E367DB51AB7986300F88434 /* Julia Baiteli.jpg */,
 				2E367DB61AB7986300F88434 /* Joao Brandao.jpg */,
 				2E367DB71AB7986300F88434 /* Carol Gradel.jpg */,
+				2E2341B61ACAE92A00D5D00D /* telacadastro.jpg */,
+				2E2341B81ACB8FB900D5D00D /* pressbuttonin.png */,
+				2E2341B91ACB8FB900D5D00D /* pressbuttonout.png */,
 				2E7CFEF71AAA87BF00E740E9 /* Images.xcassets */,
 				2E7CFEF91AAA87BF00E740E9 /* LaunchScreen.xib */,
 				2E7CFEEA1AAA87BF00E740E9 /* Supporting Files */,
@@ -296,12 +305,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E2341BB1ACB8FB900D5D00D /* pressbuttonout.png in Resources */,
 				2E367DB81AB7986300F88434 /* Julia Baiteli.jpg in Resources */,
 				2E367DB91AB7986300F88434 /* Joao Brandao.jpg in Resources */,
 				2E7CFEF61AAA87BF00E740E9 /* Main.storyboard in Resources */,
+				2E2341BA1ACB8FB900D5D00D /* pressbuttonin.png in Resources */,
 				2E7CFEFB1AAA87BF00E740E9 /* LaunchScreen.xib in Resources */,
 				2E7CFEF81AAA87BF00E740E9 /* Images.xcassets in Resources */,
 				2E7830DA1AB7362000E89E80 /* Bruno Baring.jpg in Resources */,
+				2E2341B71ACAE92A00D5D00D /* telacadastro.jpg in Resources */,
 				2E367DBA1AB7986300F88434 /* Carol Gradel.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
