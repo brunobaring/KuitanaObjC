@@ -30,7 +30,10 @@
 @property NSMutableArray *studentsNotPresent;
 @property NSMutableArray *studentsPending;
 @property NSMutableArray *studentsPresent;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSTimer *timer;
+@property (weak, nonatomic) IBOutlet UIButton *tap_call;
+@property BOOL *isCallOn;
 @end
 
 @implementation TC_Guest_List
@@ -46,8 +49,7 @@ int a=0;
     self.studentsNotPresent = [[NSMutableArray alloc]init];
     self.studentsNotPresent = [self getStudentsNotPresentFromClassName:self.className ClassDetail:self.classDetail];
     
-    NSDictionary *AUXstudents = @{@"" : @[@""],
-                                  @"Aguardando Confirmação" : self.studentsPending,
+    NSDictionary *AUXstudents = @{@"Aguardando Confirmação" : self.studentsPending,
                                   @"Não-Presentes" : self.studentsNotPresent,
                                   @"Presentes" : self.studentsPresent};
     
@@ -60,9 +62,23 @@ int a=0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableInfo:) name:@"notificationName" object:nil];
     
-    self.tableView.backgroundColor = [UIColor colorWithRed:254/255.0f green:231/255.0f blue:113/255.0f alpha:255.0/255.0f];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:
+                       (id)[[UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255/255.0f] CGColor],
+                       (id)[[UIColor colorWithRed:254/255.0f green:219/255.0f blue:84/255.0f alpha:255/255.0f] CGColor],
+                       nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
+    self.tableView.backgroundColor = [UIColor clearColor];
+
+//    self.tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255.0/255.0f];
+    
+    [self.tap_call setImage:[UIImage imageNamed:@"pressbuttonin.png"] forState:UIControlStateHighlighted];
+    self.isCallOn = false;
 
 }
+
+//nome email matricula senha
 
 - (NSMutableArray *)getStudentsNotPresentFromClassName:(NSString *)class_name ClassDetail:(NSString *)class_detail{
     NSMutableArray *eee = [[NSMutableArray alloc] init];
@@ -107,6 +123,7 @@ int a=0;
         }
     }
     
+    
     //    self.userStudentAnswer = [notification object];
     //    NSString *nameStudentAnswer = [NSString stringWithString:[Database getStudentWithMajor:self.userStudentAnswer.major Minor:self.userStudentAnswer.minor]];
     //    NSLog(@"%@",nameStudentAnswer);
@@ -141,52 +158,63 @@ int a=0;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if(indexPath.row == 0 && indexPath.section == 0){
-        
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"status" forIndexPath:indexPath];
-        cell.textLabel.text = @"";
-        cell.backgroundColor = [UIColor clearColor];
-        cell.opaque = NO;
-        UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 156, 170)];
-        av.image = [UIImage imageNamed:@"pressbuttonout.png"];
-        UIImageView *av1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 156, 170)];
-        av1.image = [UIImage imageNamed:@"pressbuttonin.png"];
-        cell.backgroundView = av;
-        cell.selectedBackgroundView = av1;
-        av.contentMode = UIViewContentModeCenter;
-        av1.contentMode = UIViewContentModeCenter;
-        return cell;
-        
-    }else{
-        
-        static NSString *Identifier = @"jbh";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier forIndexPath:indexPath];
-        
-        NSString *sectionTitle = [SectionTitles objectAtIndex:indexPath.section];
-        NSArray *sectionstudents = [infoToRow objectForKey:sectionTitle];
-        NSString *student = [sectionstudents objectAtIndex:indexPath.row];
-        cell.textLabel.textAlignment = NSTextAlignmentLeft;
-        cell.textLabel.textAlignment = NSTextAlignmentNatural;
-        cell.textLabel.text = student;
-        [cell setBackgroundColor:[UIColor colorWithRed:247/255.0f green:190/255.0f blue:87/255.0f alpha:1.0f]];
-
-        
-//        UIImageView *iconImage = [[UIImageView alloc] init];
-//        iconImage.frame = CGRectMake(cell.bounds.size.width-54,5,49,60);
-//        iconImage.image = [UIImage imageNamed:[student stringByAppendingString:@".jpg"]];
-//        [cell.contentView addSubview:iconImage];
-        
-        return cell;
+    //    if(indexPath.row == 0 && indexPath.section == 0){
+    //
+    //        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"status" forIndexPath:indexPath];
+    //        cell.textLabel.text = @"";
+    //        cell.backgroundColor = [UIColor clearColor];
+    //        cell.opaque = NO;
+    //        UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 156, 170)];
+    //        av.image = [UIImage imageNamed:@"pressbuttonout.png"];
+    //        UIImageView *av1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 156, 170)];
+    //        av1.image = [UIImage imageNamed:@"pressbuttonin.png"];
+    //        cell.backgroundView = av;
+    //        cell.selectedBackgroundView = av1;
+    //        av.contentMode = UIViewContentModeCenter;
+    //        av1.contentMode = UIViewContentModeCenter;
+    //        return cell;
+    //
+    //    }else{
+    
+    static NSString *Identifier = @"jbh";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier forIndexPath:indexPath];
+    
+    NSString *sectionTitle = [SectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionstudents = [infoToRow objectForKey:sectionTitle];
+    NSString *student = [sectionstudents objectAtIndex:indexPath.row];
+    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+    cell.textLabel.textAlignment = NSTextAlignmentNatural;
+    cell.textLabel.text = student;
+    
+    if (indexPath.section == 0) {
+        [cell setBackgroundColor:[UIColor colorWithRed:254/255.0f green:219/255.0f blue:84/255.0f alpha:255.0/255.0f]];
     }
+    if (indexPath.section == 1) {
+        [cell setBackgroundColor:[UIColor colorWithRed:202/255.0f green:104/255.0f blue:87/255.0f alpha:255.0/255.0f]];
+    }
+    if (indexPath.section == 2) {
+        [cell setBackgroundColor:[UIColor colorWithRed:64/255.0f green:190/255.0f blue:81/255.0f alpha:255.0/255.0f]];
+    }
+    
+//    [UIColor colorWithRed:247/255.0f green:190/255.0f blue:87/255.0f alpha:1.0f]];
+    
+    
+    //        UIImageView *iconImage = [[UIImageView alloc] init];
+    //        iconImage.frame = CGRectMake(cell.bounds.size.width-54,5,49,60);
+    //        iconImage.image = [UIImage imageNamed:[student stringByAppendingString:@".jpg"]];
+    //        [cell.contentView addSubview:iconImage];
+    
+    return cell;
+    //    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0 && indexPath.section == 0) {
-        return 180;
-    }else{
-        return 50;
-    }
+    //    if (indexPath.row == 0 && indexPath.section == 0) {
+    //        return 180;
+    //    }else{
+    return 50;
+    //    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -198,25 +226,38 @@ int a=0;
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     
-    if(indexPath.row == 0 && indexPath.section == 0){
-        //        self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
-        //                                         target:self
-        //                                       selector:@selector(abc)
-        //                                       userInfo:nil
-        //                        nsti                repeats:YES];
-        
-        
-        //        [self.be_beacon startRangingPlease];
+    //    if(indexPath.row == 0 && indexPath.section == 0){
+    //        //        self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+    //        //                                         target:self
+    //        //                                       selector:@selector(abc)
+    //        //                                       userInfo:nil
+    //        //                        nsti                repeats:YES];
+    //
+    //
+    //        [self.be_beacon startRangingPlease];
+    //        [self.find_beacon startMonitoringPlease];
+    //    }
+    
+    NSString *aa = [self.studentsPending objectAtIndex:indexPath.row];
+    [self.studentsPending removeObject:aa];
+    [self.studentsPresent addObject:aa];
+    [self.tableView reloadData];
+    
+    
+}
+
+- (IBAction)tapCallButton:(id)sender {
+    if (!self.isCallOn) {
+        [self.be_beacon startRangingPlease];
         [self.find_beacon startMonitoringPlease];
+        [self.tap_call setImage:[UIImage imageNamed:@"presençaok.png"] forState:UIControlStateNormal];
+        self.isCallOn = true;
+    }else{
+        [self.be_beacon stopRangingPlease];
+        [self.tap_call setImage:[UIImage imageNamed:@"pressbuttonout.png"] forState:UIControlStateNormal];
+
+        self.isCallOn = false;
     }
-    
-    if(indexPath.section == 1){
-        NSString *aa = [self.studentsPending objectAtIndex:indexPath.row];
-        [self.studentsPending removeObject:aa];
-        [self.studentsPresent addObject:aa];
-        [self.tableView reloadData];
-    }
-    
 }
 -(void) abc{
     [self.be_beacon startRangingPlease];

@@ -47,24 +47,26 @@
     
     if(state == CLRegionStateInside)
     {
-        notification.alertBody = NSLocalizedString(@"You're inside the region", @"");
-        NSLog(@"identifier -> %@",region.identifier);
+//        notification.alertBody = NSLocalizedString(@"You're inside the region", @"");
+//        NSLog(@"identifier -> %@",region.identifier);
     }
     else if(state == CLRegionStateOutside)
     {
-        notification.alertBody = NSLocalizedString(@"You're outside the region", @"");
-        NSLog(@"identifier -> %@",region.identifier);
+//        notification.alertBody = NSLocalizedString(@"You're outside the region", @"");
+//        NSLog(@"identifier -> %@",region.identifier);
     }
     else
     {
         return;
     }
     
+//    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+
+    
     /*
      If the application is in the foreground, it will get a callback to application:didReceiveLocalNotification:.
      If it's not, iOS will display the notification to the user.
      */
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification

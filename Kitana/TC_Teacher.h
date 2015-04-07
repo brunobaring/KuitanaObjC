@@ -11,6 +11,8 @@
 
 @interface TC_Teacher : User
 
++ (instancetype)initTeacherWithMajor:(int)major Minor:(int)minor Name:(NSString *)name Email:(NSString *)email Matricula:(NSString *)matricula;
+
 +(instancetype)initTeacherWithMajor:(int)major Minor:(int)minor Classes:(NSMutableArray *)classes;
 
 +(instancetype)initTeacherWithArray:(NSMutableArray *)info;

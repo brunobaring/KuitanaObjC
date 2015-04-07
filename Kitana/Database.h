@@ -23,4 +23,6 @@
 
 + (NSMutableArray *)checkLoginWithEmail:(NSString *)email Password:(NSString *)pass;
 
++ (NSMutableArray *)insertTeacherWithName:(NSString *)name Email:(NSString *)email Password:(NSString *)pass Matricula:(NSString *)matricula;
+
 @end

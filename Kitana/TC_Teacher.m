@@ -11,12 +11,21 @@
 
 @implementation TC_Teacher
 
++ (instancetype)initTeacherWithMajor:(int)major Minor:(int)minor Name:(NSString *)name Email:(NSString *)email Matricula:(NSString *)matricula{
+    TC_Teacher *teacher = [[TC_Teacher alloc]init];
+    teacher.name = name;
+    teacher.email = email;
+    teacher.matricula = matricula;
+    teacher.major = major;
+    teacher.minor = minor;
+    return teacher;
+}
 
 +(instancetype)initTeacherWithMajor:(int)major Minor:(int)minor Classes:(NSMutableArray *)classes{
     TC_Teacher *teacher = [[TC_Teacher alloc]init];
-    [teacher setMajor:major];
-    [teacher setMinor:minor];
-    [teacher setClasses:classes];
+    teacher.major = major;
+    teacher.minor = minor;
+    teacher.classes = classes;
     return teacher;
 }
 

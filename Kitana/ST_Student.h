@@ -11,11 +11,10 @@
 
 @interface ST_Student : User
 
++ (instancetype)initStudentWithMajor:(int)major Minor:(int)minor Name:(NSString *)name Email:(NSString *)email Matricula:(NSString *)matricula;
+
 +(instancetype)initStudent:(NSObject *)user;
+
 +(instancetype)initStudentWithArray:(NSMutableArray *)info;
-
-
-@property (nonatomic) int major;
-@property (nonatomic) int minor;
 
 @end

@@ -37,9 +37,9 @@
 //
 //
 //+(NSMutableArray *)getStudentsFromClassOfTeacherWithTeacherMajor:(int)major TeacherMinor:(int)minor ClassName:(NSString *)className Detail:(NSString *)classDetail{
-//    
+//
 //    NSString *link = [NSString stringWithFormat:@"http://198.199.109.62/getStudentsFromClassOfTeacherWithTeacherMajor.php?major=%d&minor=%d&classname=%@&detail=%@", major, minor, className, classDetail];
-//    
+//
 //    link = [link stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
 //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 //    [request setHTTPMethod:@"GET"];
@@ -52,13 +52,13 @@
 //    for (int i = 0; i < response1.count; i++) {
 //        [name addObject:[NSString stringWithFormat:@"%@",[[response1 objectAtIndex:i]objectForKey:@"name"]]];
 //    }
-//    
+//
 //    NSLog(@"%@", name);
 //    return name;
 //}
 //
 //+(ST_Student *)getStudentNameWithMajor:(int)major Minor:(int)minor{
-//    
+//
 //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 //    [request setHTTPMethod:@"GET"];
 //    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://198.199.109.62/getStudentNameWithMajorAndMinor.php?major=%d&minor=%d",major, minor]]];
@@ -66,9 +66,9 @@
 //    NSError *error = nil;
 //    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 //    NSArray *response1 = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
-//    
+//
 //    NSLog(@"getstudent %@",response1);
-//    
+//
 //    ST_Student *student = [[ST_Student alloc]init];
 //    student.name = [NSString stringWithFormat:@"%@",[[response1 objectAtIndex:0]objectForKey:@"name"]];
 //    return student;
@@ -82,7 +82,7 @@
 //    if(![sessao containsObject:userName])
 //        [sessao addObject:userName];
 //    [dict setObject:sessao forKey:toSect];
-//    
+//
 //    return dict;
 //}
 
@@ -96,9 +96,26 @@
     NSError *error = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableArray *response1 = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
-//    NSLog(@"%@",response1);
-
+        NSLog(@"%@",response1);
+    
     return response1;
 }
 
+//http://198.199.109.62/insertUser.php?name=jabba&email=jjajsda&senha=asdasd&matricula=123123&tipo=teacher
+
++ (NSMutableArray *)insertTeacherWithName:(NSString *)name Email:(NSString *)email Password:(NSString *)pass Matricula:(NSString *)matricula{
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://198.199.109.62/insertUser.php?name=%@&email=%@&senha=%@&matricula=%@&tipo=teacher",name,email,pass,matricula]]];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSMutableArray *response1 = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
+//    NSLog(@"%@",response1);
+//    NSLog(@"%@",response.URL);
+
+    return response1;
+    
+}
 @end

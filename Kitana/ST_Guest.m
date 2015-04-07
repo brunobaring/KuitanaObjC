@@ -43,8 +43,8 @@
     
     SectionTitles = @[@"Cadastradas",@"Nao-Cadastradas"];
     
-    [self.locationManager requestWhenInUseAuthorization];
-    [self.locationManager requestAlwaysAuthorization];
+    //    [self.locationManager requestWhenInUseAuthorization];
+    //    [self.locationManager requestAlwaysAuthorization];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -57,10 +57,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableInfo:) name:@"notificationName" object:nil];
     
     self.st_timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self
-                                   selector:@selector(abc)
-                                   userInfo:nil
-                                    repeats:YES];
+                                                     target:self
+                                                   selector:@selector(abc)
+                                                   userInfo:nil
+                                                    repeats:YES];
+    
+//    self.tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255.0/255.0f];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:
+                       (id)[[UIColor colorWithRed:254/255.0f green:219/255.0f blue:84/255.0f alpha:255/255.0f] CGColor],
+                       (id)[[UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255/255.0f] CGColor],
+                       nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
 }
 
 -(void) abc{
@@ -105,39 +114,39 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MateriasAluno" forIndexPath:indexPath];
     
+    
     NSString *sectionTitle = [SectionTitles objectAtIndex:indexPath.section];
     NSArray *sectionstudents = [infoToRow objectForKey:sectionTitle];
     Discipline *aaa = [sectionstudents objectAtIndex:indexPath.row];
     cell.textLabel.text = aaa.name;
     cell.detailTextLabel.text = aaa.details;
     
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(cell.bounds.size.width-33,12,20,20)];
+    [cell setBackgroundColor:[UIColor colorWithRed:254/255.0f green:219/255.0f blue:84/255.0f alpha:1.0f]];
     
     if (!aaa.answer) {
-        [cell setBackgroundColor:[UIColor redColor]];
+        
+        //        [cell setBackgroundColor:[UIColor colorWithRed:204/255.0f green:104/255.0f blue:84/255.0f alpha:1.0f]];
+        imgView.image = [UIImage imageNamed:@"redball.png"];
+        
     }else{
-        [cell setBackgroundColor:[UIColor greenColor]];
+        imgView.image = [UIImage imageNamed:@"greenball.png"];
+        //        [cell setBackgroundColor:[UIColor colorWithRed:74/255.0f green:198/255.0f blue:100/255.0f alpha:1.0f]];
+        
     }
-    //    [cell setBackgroundColor:[UIColor yellowColor]];
+    [cell.contentView addSubview:imgView];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MateriasAluno" forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MateriasAluno" forIndexPath:indexPath];
     
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     
-    
-    if(indexPath.row == 0 && indexPath.section == 0 && [cell.textLabel.text isEqualToString:@"Calculo IV"]){
-        
-        NSLog(@"respondido!");
-        self.be_beacon = [BCN_BeBeacon initBeaconWithMajor:self.student.major minor:self.student.minor];
-        [self.be_beacon startRangingPlease];
-    }
-    
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-
+    
 }
 
 - (void)reloadTableInfo:(NSNotification *)notification{
@@ -145,8 +154,8 @@
     
     //    NSLog(@"beac %d",[beac.major intValue]);
     
-//    NSLog(@"%@",self.find_beacon.BeaconsFound);
-
+    //    NSLog(@"%@",self.find_beacon.BeaconsFound);
+    
     for (int k = 0 ; k < self.find_beacon.BeaconsFound.count; k++) {
         CLBeacon *beac = [self.find_beacon.BeaconsFound objectAtIndex:k];
         for (int j = 0 ; j < self.student.classes.count; j++){

@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2E00939F1AC0CE3900A7734A /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E00939E1AC0CE3900A7734A /* Database.m */; };
+		2E1428E31ACC66BB0043279A /* presençaok.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1428E01ACC66BB0043279A /* presençaok.png */; };
+		2E1428E41ACC66BB0043279A /* tela1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E1428E11ACC66BB0043279A /* tela1.jpg */; };
+		2E1428E51ACC66BB0043279A /* tela1a.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1428E21ACC66BB0043279A /* tela1a.png */; };
+		2E1429071ACC8E410043279A /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1429061ACC8E410043279A /* user.png */; };
+		2E1429091ACC8E510043279A /* senha.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1429081ACC8E510043279A /* senha.png */; };
+		2E14326C1ACE0F5900B06085 /* SignUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E14326B1ACE0F5900B06085 /* SignUp.m */; };
 		2E2341B71ACAE92A00D5D00D /* telacadastro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E2341B61ACAE92A00D5D00D /* telacadastro.jpg */; };
 		2E2341BA1ACB8FB900D5D00D /* pressbuttonin.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E2341B81ACB8FB900D5D00D /* pressbuttonin.png */; };
 		2E2341BB1ACB8FB900D5D00D /* pressbuttonout.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E2341B91ACB8FB900D5D00D /* pressbuttonout.png */; };
@@ -32,6 +38,8 @@
 		2EAF6F351AC32A180043ADF6 /* ST_Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF6F341AC32A180043ADF6 /* ST_Student.m */; };
 		2EAF6F381AC3399B0043ADF6 /* Discipline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF6F371AC3399B0043ADF6 /* Discipline.m */; };
 		2EBC0FD91AC744FF004678BB /* ST_NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBC0FD81AC744FF004678BB /* ST_NavigationController.m */; };
+		2EBDD3FA1AD3507600FE4574 /* redball.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EBDD3F91AD3507600FE4574 /* redball.png */; };
+		2EBDD3FC1AD3507F00FE4574 /* greenball.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EBDD3FB1AD3507F00FE4574 /* greenball.png */; };
 		2EE98F4F1AC05B4E00BB96BD /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE98F4E1AC05B4E00BB96BD /* Menu.m */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +56,13 @@
 /* Begin PBXFileReference section */
 		2E00939D1AC0CE3900A7734A /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		2E00939E1AC0CE3900A7734A /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		2E1428E01ACC66BB0043279A /* presençaok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "presençaok.png"; sourceTree = "<group>"; };
+		2E1428E11ACC66BB0043279A /* tela1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tela1.jpg; sourceTree = "<group>"; };
+		2E1428E21ACC66BB0043279A /* tela1a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tela1a.png; sourceTree = "<group>"; };
+		2E1429061ACC8E410043279A /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		2E1429081ACC8E510043279A /* senha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = senha.png; sourceTree = "<group>"; };
+		2E14326A1ACE0F5900B06085 /* SignUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUp.h; sourceTree = "<group>"; };
+		2E14326B1ACE0F5900B06085 /* SignUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUp.m; sourceTree = "<group>"; };
 		2E2341B61ACAE92A00D5D00D /* telacadastro.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = telacadastro.jpg; sourceTree = "<group>"; };
 		2E2341B81ACB8FB900D5D00D /* pressbuttonin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pressbuttonin.png; sourceTree = "<group>"; };
 		2E2341B91ACB8FB900D5D00D /* pressbuttonout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pressbuttonout.png; sourceTree = "<group>"; };
@@ -64,6 +79,8 @@
 		2E367DB71AB7986300F88434 /* Carol Gradel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Carol Gradel.jpg"; sourceTree = "<group>"; };
 		2E3DC98F1AC1B9BF00ADCDB7 /* TC_NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_NavigationController.h; sourceTree = "<group>"; };
 		2E3DC9901AC1B9BF00ADCDB7 /* TC_NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TC_NavigationController.m; sourceTree = "<group>"; };
+		2E652B521AD47C0F00F50B64 /* Azedo-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Azedo-Light.otf"; sourceTree = "<group>"; };
+		2E652B531AD47C0F00F50B64 /* Azedo-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Azedo-Bold.otf"; sourceTree = "<group>"; };
 		2E7830D91AB7362000E89E80 /* Bruno Baring.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Bruno Baring.jpg"; sourceTree = "<group>"; };
 		2E7CFEE71AAA87BF00E740E9 /* Kitana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kitana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7CFEEB1AAA87BF00E740E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +105,8 @@
 		2EAF6F371AC3399B0043ADF6 /* Discipline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Discipline.m; sourceTree = "<group>"; };
 		2EBC0FD71AC744FF004678BB /* ST_NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ST_NavigationController.h; sourceTree = "<group>"; };
 		2EBC0FD81AC744FF004678BB /* ST_NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ST_NavigationController.m; sourceTree = "<group>"; };
+		2EBDD3F91AD3507600FE4574 /* redball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redball.png; sourceTree = "<group>"; };
+		2EBDD3FB1AD3507F00FE4574 /* greenball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenball.png; sourceTree = "<group>"; };
 		2EE98F4D1AC05B4E00BB96BD /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		2EE98F4E1AC05B4E00BB96BD /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +191,8 @@
 			children = (
 				2E7CFEEE1AAA87BF00E740E9 /* AppDelegate.h */,
 				2E7CFEEF1AAA87BF00E740E9 /* AppDelegate.m */,
+				2E14326A1ACE0F5900B06085 /* SignUp.h */,
+				2E14326B1ACE0F5900B06085 /* SignUp.m */,
 				2EE98F4D1AC05B4E00BB96BD /* Menu.h */,
 				2EE98F4E1AC05B4E00BB96BD /* Menu.m */,
 				2E00939D1AC0CE3900A7734A /* Database.h */,
@@ -186,11 +207,18 @@
 				2E3DC9941AC2074000ADCDB7 /* Student */,
 				2E7830D91AB7362000E89E80 /* Bruno Baring.jpg */,
 				2E367DB51AB7986300F88434 /* Julia Baiteli.jpg */,
+				2EBDD3F91AD3507600FE4574 /* redball.png */,
+				2EBDD3FB1AD3507F00FE4574 /* greenball.png */,
 				2E367DB61AB7986300F88434 /* Joao Brandao.jpg */,
 				2E367DB71AB7986300F88434 /* Carol Gradel.jpg */,
 				2E2341B61ACAE92A00D5D00D /* telacadastro.jpg */,
+				2E1428E01ACC66BB0043279A /* presençaok.png */,
+				2E1428E11ACC66BB0043279A /* tela1.jpg */,
+				2E1428E21ACC66BB0043279A /* tela1a.png */,
 				2E2341B81ACB8FB900D5D00D /* pressbuttonin.png */,
 				2E2341B91ACB8FB900D5D00D /* pressbuttonout.png */,
+				2E1429061ACC8E410043279A /* user.png */,
+				2E1429081ACC8E510043279A /* senha.png */,
 				2E7CFEF71AAA87BF00E740E9 /* Images.xcassets */,
 				2E7CFEF91AAA87BF00E740E9 /* LaunchScreen.xib */,
 				2E7CFEEA1AAA87BF00E740E9 /* Supporting Files */,
@@ -201,6 +229,8 @@
 		2E7CFEEA1AAA87BF00E740E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E652B521AD47C0F00F50B64 /* Azedo-Light.otf */,
+				2E652B531AD47C0F00F50B64 /* Azedo-Bold.otf */,
 				2E7CFEEB1AAA87BF00E740E9 /* Info.plist */,
 				2E7CFEEC1AAA87BF00E740E9 /* main.m */,
 			);
@@ -309,12 +339,19 @@
 				2E367DB81AB7986300F88434 /* Julia Baiteli.jpg in Resources */,
 				2E367DB91AB7986300F88434 /* Joao Brandao.jpg in Resources */,
 				2E7CFEF61AAA87BF00E740E9 /* Main.storyboard in Resources */,
+				2E1428E51ACC66BB0043279A /* tela1a.png in Resources */,
 				2E2341BA1ACB8FB900D5D00D /* pressbuttonin.png in Resources */,
 				2E7CFEFB1AAA87BF00E740E9 /* LaunchScreen.xib in Resources */,
+				2E1428E31ACC66BB0043279A /* presençaok.png in Resources */,
 				2E7CFEF81AAA87BF00E740E9 /* Images.xcassets in Resources */,
 				2E7830DA1AB7362000E89E80 /* Bruno Baring.jpg in Resources */,
+				2E1429091ACC8E510043279A /* senha.png in Resources */,
+				2E1429071ACC8E410043279A /* user.png in Resources */,
 				2E2341B71ACAE92A00D5D00D /* telacadastro.jpg in Resources */,
 				2E367DBA1AB7986300F88434 /* Carol Gradel.jpg in Resources */,
+				2EBDD3FA1AD3507600FE4574 /* redball.png in Resources */,
+				2EBDD3FC1AD3507F00FE4574 /* greenball.png in Resources */,
+				2E1428E41ACC66BB0043279A /* tela1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +378,7 @@
 				2EAF6F351AC32A180043ADF6 /* ST_Student.m in Sources */,
 				2EBC0FD91AC744FF004678BB /* ST_NavigationController.m in Sources */,
 				2E00939F1AC0CE3900A7734A /* Database.m in Sources */,
+				2E14326C1ACE0F5900B06085 /* SignUp.m in Sources */,
 				2E7CFEED1AAA87BF00E740E9 /* main.m in Sources */,
 				2E2E254F1AAF435000E95E44 /* BCN_BeBeacon.m in Sources */,
 				2EAF6F381AC3399B0043ADF6 /* Discipline.m in Sources */,

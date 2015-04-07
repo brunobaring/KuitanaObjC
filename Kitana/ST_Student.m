@@ -11,6 +11,16 @@
 
 @implementation ST_Student
 
++ (instancetype)initStudentWithMajor:(int)major Minor:(int)minor Name:(NSString *)name Email:(NSString *)email Matricula:(NSString *)matricula{
+    ST_Student *student = [[ST_Student alloc]init];
+    student.name = name;
+    student.email = email;
+    student.matricula = matricula;
+    student.major = major;
+    student.minor = minor;
+    return student;
+}
+
 +(instancetype)initStudent:(NSObject *)user{
     ST_Student *student = [[ST_Student alloc]init];
     student.major = [[user valueForKey:@"Major"]intValue];

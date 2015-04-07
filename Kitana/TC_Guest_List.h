@@ -12,7 +12,7 @@
 #import "TC_Teacher.h"
 
 
-@interface TC_Guest_List : UITableViewController <UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate>
+@interface TC_Guest_List : UIViewController <UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate>
 
 //@property (weak, nonatomic) IBOutlet UILabel *beaconFoundLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *proximityUUIDLabel;

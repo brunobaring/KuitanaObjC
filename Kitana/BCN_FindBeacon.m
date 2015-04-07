@@ -35,8 +35,8 @@ int pbeaconsFoundCount = 0;
 }
 
 - (void)startMonitoringPlease {
-    [self.locationManager requestWhenInUseAuthorization];
-    [self.locationManager requestAlwaysAuthorization];
+//    [self.locationManager requestWhenInUseAuthorization];
+//    [self.locationManager requestAlwaysAuthorization];
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -75,7 +75,7 @@ int pbeaconsFoundCount = 0;
         //            }
         //        }
         //
-        //        NSLog(@"%@",beacons);
+                NSLog(@"%@",beacons);
         
         
         

@@ -25,7 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    //253 218 57 //249 176 30
 
-    self.tableView.backgroundColor = [UIColor colorWithRed:254/255.0f green:231/255.0f blue:113/255.0f alpha:255.0/255.0f];
+//    self.tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255.0/255.0f];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:
+                       (id)[[UIColor colorWithRed:254/255.0f green:219/255.0f blue:84/255.0f alpha:255/255.0f] CGColor],
+                       (id)[[UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255/255.0f] CGColor],
+                       nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,8 +62,7 @@
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 3;
     //253 218 57
-    [cell setBackgroundColor:[UIColor colorWithRed:247/255.0f green:190/255.0f blue:87/255.0f alpha:1.0f]];
-//    [cell setBackgroundColor:[UIColor redColor]];
+    [cell setBackgroundColor:[UIColor colorWithRed:254/255.0f green:219/255.0f blue:84/255.0f alpha:1.0f]];
     
     return cell;
 }
