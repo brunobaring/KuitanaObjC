@@ -103,11 +103,11 @@
 
 //http://198.199.109.62/insertUser.php?name=jabba&email=jjajsda&senha=asdasd&matricula=123123&tipo=teacher
 
-+ (NSMutableArray *)insertTeacherWithName:(NSString *)name Email:(NSString *)email Password:(NSString *)pass Matricula:(NSString *)matricula{
++ (NSMutableArray *)insertUserWithName:(NSString *)name Email:(NSString *)email Password:(NSString *)pass Matricula:(NSString *)matricula Type:(NSString *)type{
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://198.199.109.62/insertUser.php?name=%@&email=%@&senha=%@&matricula=%@&tipo=teacher",name,email,pass,matricula]]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://198.199.109.62/insertUser.php?name=%@&email=%@&senha=%@&matricula=%@&tipo=%@",name,email,pass,matricula,type]]];
     NSURLResponse *response = nil;
     NSError *error = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
