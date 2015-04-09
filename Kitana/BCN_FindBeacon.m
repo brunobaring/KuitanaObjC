@@ -67,15 +67,15 @@ int pbeaconsFoundCount = 0;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationName" object:nil];
         
-        //        for (int i = 0 ; i < self.BeaconsFound.count ; i++) {
-        //            CLBeacon *temp = [self.BeaconsFound objectAtIndex:i];
-        //            if (temp.accuracy < 0) {
-        //                [self.BeaconsFound removeObjectAtIndex:i];
-        ////                NSLog(@"beacon bugado(duplicado) identificado e removido");
-        //            }
-        //        }
-        //
-                NSLog(@"%@",beacons);
+//                for (int i = 0 ; i < self.BeaconsFound.count ; i++) {
+//                    CLBeacon *temp = [self.BeaconsFound objectAtIndex:i];
+//                    if (temp.accuracy < 0) {
+//                        [self.BeaconsFound removeObjectAtIndex:i];
+//                        NSLog(@"Beacon Removido. Accuracy -1. Ruído.");
+//                    }
+//                }
+//        
+//                NSLog(@"%@",beacons);
         
         
         

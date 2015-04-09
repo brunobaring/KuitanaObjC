@@ -30,6 +30,7 @@
 @property NSMutableArray *studentsNotPresent;
 @property NSMutableArray *studentsPending;
 @property NSMutableArray *studentsPresent;
+@property NSMutableArray *beaconsPossiblyNewStudents;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSTimer *timer;
 @property (weak, nonatomic) IBOutlet UIButton *tap_call;
@@ -47,6 +48,7 @@ int a=0;
     self.studentsPresent = [[NSMutableArray alloc]init];
     self.studentsPending = [[NSMutableArray alloc]init];
     self.studentsNotPresent = [[NSMutableArray alloc]init];
+    self.beaconsPossiblyNewStudents = [[NSMutableArray alloc]init];
     self.studentsNotPresent = [self getStudentsNotPresentFromClassName:self.className ClassDetail:self.classDetail];
     
     NSDictionary *AUXstudents = @{@"Aguardando Confirmação" : self.studentsPending,
@@ -70,65 +72,46 @@ int a=0;
                        nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
     self.tableView.backgroundColor = [UIColor clearColor];
-
-//    self.tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255.0/255.0f];
+    
+    //    self.tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255.0/255.0f];
     
     [self.tap_call setImage:[UIImage imageNamed:@"pressbuttonin.png"] forState:UIControlStateHighlighted];
     self.isCallOn = false;
-
-}
-
-//nome email matricula senha
-
-- (NSMutableArray *)getStudentsNotPresentFromClassName:(NSString *)class_name ClassDetail:(NSString *)class_detail{
-    NSMutableArray *eee = [[NSMutableArray alloc] init];
-    NSMutableArray *aaa = self.teacher.classes;
-    for (int i  = 0 ; i < aaa.count; i++) {
-        Discipline *bbb = [aaa objectAtIndex:i];
-        if ([bbb.name isEqualToString:class_name] && [bbb.details isEqualToString:class_detail]) {
-            NSMutableArray *ccc = bbb.students;
-            for ( int i = 0 ; i < bbb.students.count ; i++ ) {
-                ST_Student *ddd = [ccc objectAtIndex:i];
-                [eee addObject:ddd.name];
-            }
-            i = aaa.count;
-        }
-    }
     
-    return eee;
 }
-
 
 - (void)reloadTableInfo:(NSNotification *)notification{
-    [self.find_beacon startMonitoringPlease];
-    [self.be_beacon startRangingPlease];
-    //    NSLog(@"%@",self.find_beacon.BeaconsFound);
     
+//    NSLog(@"%@",self.beaconsPossiblyNewStudents);
     
-    for (int i = 0 ; i < self.find_beacon.BeaconsFound.count; i++) {
-        CLBeacon *aaa = [self.find_beacon.BeaconsFound objectAtIndex:i];
-        for (int j = 0 ; j < self.teacher.classes.count ; j++) {
-            Discipline *bbb = [self.teacher.classes objectAtIndex:j];
-            if ([bbb.name isEqualToString:self.className]) {
-                for (int k = 0 ; k < bbb.students.count; k++) {
-                    ST_Student * ccc = [bbb.students objectAtIndex:k];
-                    if (ccc.major == [aaa.major intValue] && ![self.studentsPending containsObject:ccc.name] && ![self.studentsPresent containsObject:ccc.name]) {
-                        ///achou o aluno
-                        ///remover o nome do nao presente
-                        [self.studentsNotPresent removeObject:ccc.name];
-                        [self.studentsPending addObject:ccc.name];
+    for (int i = 0 ; i < self.find_beacon.BeaconsFound.count; i++) {  //percorre os beacons achados pelo find_beacon
+        CLBeacon *beacon = [self.find_beacon.BeaconsFound objectAtIndex:i];  //cria um beacon com o beacon da posicao i no vetor de beacons achados
+        for (int j = 0 ; j < self.teacher.classes.count ; j++) {  //percorre todas as aulas que os professores dao
+            Discipline *disc = [self.teacher.classes objectAtIndex:j];  //cria uma disciplina com a disciplina da posicao j no vetor de aulas do professor
+            if ([disc.name isEqualToString:self.className]) {  // se o nome da disciplina criada for igual a disciplina da posicao j no vetor de aulas do professor
+                for (int k = 0 ; k < disc.students.count; k++) {  //percorre os estudantes da disciplina criada q é igual a disciplina da posicao j no vetor de aulas do professor
+                    ST_Student * stud = [disc.students objectAtIndex:k];  //cria um aluno na posicao k da aula criada
+                    if (stud.major == [beacon.major intValue] && stud.minor == [beacon.minor intValue] && ![self.studentsPending containsObject:stud.name] && ![self.studentsPresent containsObject:stud.name]) {  //se aluno nao estiver já marcado como presente nem como aguardando confirmacao,
+                            [self.studentsNotPresent removeObject:stud.name]; //remove o aluno do nao presente
+                            [self.studentsPending addObject:stud.name]; // e adiciona ao vetor de aguardando confirmaçao
+                        
+                    }else{
+//                        if (self.beaconsPossiblyNewStudents.count == 0) {
+//                            [self.beaconsPossiblyNewStudents addObject:beacon];
+//                        }else{
+//                            for (int l = 0; l < self.beaconsPossiblyNewStudents.count; l++) {
+//                                CLBeacon *beacon2 = [self.beaconsPossiblyNewStudents objectAtIndex:l];
+//                                if ([beacon2.major intValue] != [beacon.major intValue] || [beacon2.minor intValue] != [beacon.minor intValue]) {
+//                                    [self.beaconsPossiblyNewStudents addObject:beacon];
+//                                }
+//                            }
+//                        }
                     }
                 }
             }
         }
     }
     
-    
-    //    self.userStudentAnswer = [notification object];
-    //    NSString *nameStudentAnswer = [NSString stringWithString:[Database getStudentWithMajor:self.userStudentAnswer.major Minor:self.userStudentAnswer.minor]];
-    //    NSLog(@"%@",nameStudentAnswer);
-    //    NSLog(@"%d",self.userStudentAnswer.major);
-    //    [Database moveUserBetweenSectionsWithDictionary:students userName:nameStudentAnswer from:@"Não-Presentes" to:@"Aguardando Confirmação"];
     [self.tableView reloadData];
 }
 
@@ -147,7 +130,6 @@ int a=0;
 {
     NSString *sectionTitle = [SectionTitles objectAtIndex:section];
     NSArray *sectionstudents = [infoToRow objectForKey:sectionTitle];
-    //    NSLog(@"%ld",(long)section);
     return [sectionstudents count];
 }
 
@@ -157,24 +139,6 @@ int a=0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //    if(indexPath.row == 0 && indexPath.section == 0){
-    //
-    //        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"status" forIndexPath:indexPath];
-    //        cell.textLabel.text = @"";
-    //        cell.backgroundColor = [UIColor clearColor];
-    //        cell.opaque = NO;
-    //        UIImageView *av = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 156, 170)];
-    //        av.image = [UIImage imageNamed:@"pressbuttonout.png"];
-    //        UIImageView *av1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 156, 170)];
-    //        av1.image = [UIImage imageNamed:@"pressbuttonin.png"];
-    //        cell.backgroundView = av;
-    //        cell.selectedBackgroundView = av1;
-    //        av.contentMode = UIViewContentModeCenter;
-    //        av1.contentMode = UIViewContentModeCenter;
-    //        return cell;
-    //
-    //    }else{
     
     static NSString *Identifier = @"jbh";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier forIndexPath:indexPath];
@@ -196,25 +160,13 @@ int a=0;
         [cell setBackgroundColor:[UIColor colorWithRed:64/255.0f green:190/255.0f blue:81/255.0f alpha:255.0/255.0f]];
     }
     
-//    [UIColor colorWithRed:247/255.0f green:190/255.0f blue:87/255.0f alpha:1.0f]];
-    
-    
-    //        UIImageView *iconImage = [[UIImageView alloc] init];
-    //        iconImage.frame = CGRectMake(cell.bounds.size.width-54,5,49,60);
-    //        iconImage.image = [UIImage imageNamed:[student stringByAppendingString:@".jpg"]];
-    //        [cell.contentView addSubview:iconImage];
     
     return cell;
-    //    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    if (indexPath.row == 0 && indexPath.section == 0) {
-    //        return 180;
-    //    }else{
     return 50;
-    //    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -225,18 +177,6 @@ int a=0;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    
-    //    if(indexPath.row == 0 && indexPath.section == 0){
-    //        //        self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
-    //        //                                         target:self
-    //        //                                       selector:@selector(abc)
-    //        //                                       userInfo:nil
-    //        //                        nsti                repeats:YES];
-    //
-    //
-    //        [self.be_beacon startRangingPlease];
-    //        [self.find_beacon startMonitoringPlease];
-    //    }
     
     NSString *aa = [self.studentsPending objectAtIndex:indexPath.row];
     [self.studentsPending removeObject:aa];
@@ -252,13 +192,40 @@ int a=0;
         [self.find_beacon startMonitoringPlease];
         [self.tap_call setImage:[UIImage imageNamed:@"presençaok.png"] forState:UIControlStateNormal];
         self.isCallOn = true;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                      target:self
+                                                    selector:@selector(abc)
+                                                    userInfo:nil
+                                                     repeats:YES];
+        NSLog(@"Tap! Started Ranging and Monitoring. Roll Call is ON!");
     }else{
         [self.be_beacon stopRangingPlease];
+        [self.timer invalidate];
+        self.timer = nil;
         [self.tap_call setImage:[UIImage imageNamed:@"pressbuttonout.png"] forState:UIControlStateNormal];
-
         self.isCallOn = false;
+        NSLog(@"Tap! Finished Ranging. Roll Call is OFF!");
     }
 }
+
+- (NSMutableArray *)getStudentsNotPresentFromClassName:(NSString *)class_name ClassDetail:(NSString *)class_detail{
+    NSMutableArray *eee = [[NSMutableArray alloc] init];
+    NSMutableArray *aaa = self.teacher.classes;
+    for (int i  = 0 ; i < aaa.count; i++) {
+        Discipline *bbb = [aaa objectAtIndex:i];
+        if ([bbb.name isEqualToString:class_name] && [bbb.details isEqualToString:class_detail]) {
+            NSMutableArray *ccc = bbb.students;
+            for ( int i = 0 ; i < bbb.students.count ; i++ ) {
+                ST_Student *ddd = [ccc objectAtIndex:i];
+                [eee addObject:ddd.name];
+            }
+            i = aaa.count;
+        }
+    }
+    
+    return eee;
+}
+
 -(void) abc{
     [self.be_beacon startRangingPlease];
 }
@@ -267,9 +234,11 @@ int a=0;
     [super viewWillDisappear:animated];
     
     if (self.isMovingFromParentViewController || self.isBeingDismissed) {
-        //        NSLog(@"Saiu do navigation Controller");
+        NSLog(@"Back to Classes.");
         [self.be_beacon stopRangingPlease];
         [self.timer invalidate];
+        self.timer = nil;
+        
     }
     
 }

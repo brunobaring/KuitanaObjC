@@ -54,7 +54,7 @@
         int major = [[[aux objectAtIndex:0]objectForKey:@"major"]intValue];
         int minor = [[[aux objectAtIndex:0]objectForKey:@"minor"]intValue];
         self.teacher = [TC_Teacher initTeacherWithMajor:major Minor:minor Name:self.name.text Email:self.email.text Matricula:self.matricula.text];
-        
+
         [self performSegueWithIdentifier:@"SignUpTeacher" sender:self];
     }
     
@@ -63,7 +63,7 @@
         int major = [[[aux objectAtIndex:0]objectForKey:@"major"]intValue];
         int minor = [[[aux objectAtIndex:0]objectForKey:@"minor"]intValue];
         self.student = [ST_Student initStudentWithMajor:major Minor:minor Name:self.name.text Email:self.email.text Matricula:self.matricula.text];
-        
+
         [self performSegueWithIdentifier:@"SignUpStudent" sender:self];
     }
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ROFL"
@@ -75,7 +75,6 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     if ([segue.identifier isEqualToString:@"SignUpTeacher"]) {
         TC_NavigationController *destViewController = [segue destinationViewController];
         TC_ClassList *classList = (TC_ClassList *) destViewController.topViewController;

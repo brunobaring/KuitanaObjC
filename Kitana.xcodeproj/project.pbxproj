@@ -25,6 +25,9 @@
 		2E367DB91AB7986300F88434 /* Joao Brandao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E367DB61AB7986300F88434 /* Joao Brandao.jpg */; };
 		2E367DBA1AB7986300F88434 /* Carol Gradel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E367DB71AB7986300F88434 /* Carol Gradel.jpg */; };
 		2E3DC9911AC1B9BF00ADCDB7 /* TC_NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC9901AC1B9BF00ADCDB7 /* TC_NavigationController.m */; };
+		2E5E05DB1AD57EF70093C8D5 /* Azedo-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E652B521AD47C0F00F50B64 /* Azedo-Light.otf */; };
+		2E5E05DE1AD57F000093C8D5 /* Azedo-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E652B531AD47C0F00F50B64 /* Azedo-Bold.otf */; };
+		2E6B0B5C1AD4CDBA00BA4523 /* TC_InsertNewClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B0B5B1AD4CDBA00BA4523 /* TC_InsertNewClass.m */; };
 		2E7830DA1AB7362000E89E80 /* Bruno Baring.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E7830D91AB7362000E89E80 /* Bruno Baring.jpg */; };
 		2E7CFEED1AAA87BF00E740E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7CFEEC1AAA87BF00E740E9 /* main.m */; };
 		2E7CFEF01AAA87BF00E740E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7CFEEF1AAA87BF00E740E9 /* AppDelegate.m */; };
@@ -34,6 +37,10 @@
 		2E7CFEFB1AAA87BF00E740E9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7CFEF91AAA87BF00E740E9 /* LaunchScreen.xib */; };
 		2E7CFF071AAA87BF00E740E9 /* KitanaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7CFF061AAA87BF00E740E9 /* KitanaTests.m */; };
 		2E93BF011ABA560B00E55D2F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E93BF001ABA560B00E55D2F /* User.m */; };
+		2E94FC181AD58BB200074B3F /* noun_419_cc.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E94FC171AD58BB200074B3F /* noun_419_cc.png */; };
+		2E94FC1A1AD58BBA00074B3F /* noun_99_cc-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E94FC191AD58BBA00074B3F /* noun_99_cc-2.png */; };
+		2E94FC1C1AD60FA000074B3F /* cadeado30x30.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E94FC1B1AD60FA000074B3F /* cadeado30x30.png */; };
+		2E94FC1E1AD60FBB00074B3F /* user30x30-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E94FC1D1AD60FBB00074B3F /* user30x30-2.png */; };
 		2EAF6F321AC329EF0043ADF6 /* TC_Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF6F311AC329EF0043ADF6 /* TC_Teacher.m */; };
 		2EAF6F351AC32A180043ADF6 /* ST_Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF6F341AC32A180043ADF6 /* ST_Student.m */; };
 		2EAF6F381AC3399B0043ADF6 /* Discipline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF6F371AC3399B0043ADF6 /* Discipline.m */; };
@@ -81,6 +88,8 @@
 		2E3DC9901AC1B9BF00ADCDB7 /* TC_NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TC_NavigationController.m; sourceTree = "<group>"; };
 		2E652B521AD47C0F00F50B64 /* Azedo-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Azedo-Light.otf"; sourceTree = "<group>"; };
 		2E652B531AD47C0F00F50B64 /* Azedo-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Azedo-Bold.otf"; sourceTree = "<group>"; };
+		2E6B0B5A1AD4CDBA00BA4523 /* TC_InsertNewClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_InsertNewClass.h; sourceTree = "<group>"; };
+		2E6B0B5B1AD4CDBA00BA4523 /* TC_InsertNewClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TC_InsertNewClass.m; sourceTree = "<group>"; };
 		2E7830D91AB7362000E89E80 /* Bruno Baring.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Bruno Baring.jpg"; sourceTree = "<group>"; };
 		2E7CFEE71AAA87BF00E740E9 /* Kitana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kitana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7CFEEB1AAA87BF00E740E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,6 +106,10 @@
 		2E7CFF061AAA87BF00E740E9 /* KitanaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KitanaTests.m; sourceTree = "<group>"; };
 		2E93BEFF1ABA560B00E55D2F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		2E93BF001ABA560B00E55D2F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		2E94FC171AD58BB200074B3F /* noun_419_cc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noun_419_cc.png; sourceTree = "<group>"; };
+		2E94FC191AD58BBA00074B3F /* noun_99_cc-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noun_99_cc-2.png"; sourceTree = "<group>"; };
+		2E94FC1B1AD60FA000074B3F /* cadeado30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cadeado30x30.png; sourceTree = "<group>"; };
+		2E94FC1D1AD60FBB00074B3F /* user30x30-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user30x30-2.png"; sourceTree = "<group>"; };
 		2EAF6F301AC329EF0043ADF6 /* TC_Teacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_Teacher.h; sourceTree = "<group>"; };
 		2EAF6F311AC329EF0043ADF6 /* TC_Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TC_Teacher.m; sourceTree = "<group>"; };
 		2EAF6F331AC32A180043ADF6 /* ST_Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ST_Student.h; sourceTree = "<group>"; };
@@ -140,6 +153,8 @@
 				2E2E25511AAF9CFF00E95E44 /* TC_ClassList.m */,
 				2E2E258E1AB087E200E95E44 /* TC_Guest_List.h */,
 				2E2E258F1AB087E200E95E44 /* TC_Guest_List.m */,
+				2E6B0B5A1AD4CDBA00BA4523 /* TC_InsertNewClass.h */,
+				2E6B0B5B1AD4CDBA00BA4523 /* TC_InsertNewClass.m */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -219,6 +234,10 @@
 				2E2341B91ACB8FB900D5D00D /* pressbuttonout.png */,
 				2E1429061ACC8E410043279A /* user.png */,
 				2E1429081ACC8E510043279A /* senha.png */,
+				2E94FC171AD58BB200074B3F /* noun_419_cc.png */,
+				2E94FC191AD58BBA00074B3F /* noun_99_cc-2.png */,
+				2E94FC1B1AD60FA000074B3F /* cadeado30x30.png */,
+				2E94FC1D1AD60FBB00074B3F /* user30x30-2.png */,
 				2E7CFEF71AAA87BF00E740E9 /* Images.xcassets */,
 				2E7CFEF91AAA87BF00E740E9 /* LaunchScreen.xib */,
 				2E7CFEEA1AAA87BF00E740E9 /* Supporting Files */,
@@ -335,14 +354,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E94FC181AD58BB200074B3F /* noun_419_cc.png in Resources */,
+				2E94FC1E1AD60FBB00074B3F /* user30x30-2.png in Resources */,
 				2E2341BB1ACB8FB900D5D00D /* pressbuttonout.png in Resources */,
+				2E94FC1A1AD58BBA00074B3F /* noun_99_cc-2.png in Resources */,
 				2E367DB81AB7986300F88434 /* Julia Baiteli.jpg in Resources */,
 				2E367DB91AB7986300F88434 /* Joao Brandao.jpg in Resources */,
 				2E7CFEF61AAA87BF00E740E9 /* Main.storyboard in Resources */,
+				2E94FC1C1AD60FA000074B3F /* cadeado30x30.png in Resources */,
+				2E5E05DB1AD57EF70093C8D5 /* Azedo-Light.otf in Resources */,
 				2E1428E51ACC66BB0043279A /* tela1a.png in Resources */,
 				2E2341BA1ACB8FB900D5D00D /* pressbuttonin.png in Resources */,
 				2E7CFEFB1AAA87BF00E740E9 /* LaunchScreen.xib in Resources */,
 				2E1428E31ACC66BB0043279A /* presençaok.png in Resources */,
+				2E5E05DE1AD57F000093C8D5 /* Azedo-Bold.otf in Resources */,
 				2E7CFEF81AAA87BF00E740E9 /* Images.xcassets in Resources */,
 				2E7830DA1AB7362000E89E80 /* Bruno Baring.jpg in Resources */,
 				2E1429091ACC8E510043279A /* senha.png in Resources */,
@@ -373,6 +398,7 @@
 				2E2E25521AAF9CFF00E95E44 /* TC_ClassList.m in Sources */,
 				2E2E254C1AAF3A5700E95E44 /* ST_Guest.m in Sources */,
 				2E7CFEF31AAA87BF00E740E9 /* BCN_FindBeacon.m in Sources */,
+				2E6B0B5C1AD4CDBA00BA4523 /* TC_InsertNewClass.m in Sources */,
 				2E7CFEF01AAA87BF00E740E9 /* AppDelegate.m in Sources */,
 				2E2E25901AB087E200E95E44 /* TC_Guest_List.m in Sources */,
 				2EAF6F351AC32A180043ADF6 /* ST_Student.m in Sources */,

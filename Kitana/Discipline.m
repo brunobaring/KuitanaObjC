@@ -12,7 +12,7 @@
 
 @implementation Discipline
 
-+(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc Students:(NSMutableArray *)stud{
++(instancetype)initDisciplineWithObjectDiscipline:(NSObject *)disc Students:(NSMutableArray *)stud{
     Discipline *discipline = [[Discipline alloc]init];
     discipline.name = [disc valueForKey:@"disciplineName"];
     discipline.details = [disc valueForKey:@"Detail"];
@@ -24,7 +24,7 @@
     return discipline;
 }
 
-+(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc Teachers:(NSMutableArray *)stud{
++(instancetype)initDisciplineWithObjectDiscipline:(NSObject *)disc Teachers:(NSMutableArray *)stud{
     Discipline *discipline = [[Discipline alloc]init];
     discipline.name = [disc valueForKey:@"disciplineName"];
     discipline.details = [disc valueForKey:@"Detail"];
@@ -38,7 +38,7 @@
     return discipline;
 }
 
-+(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc{
++(instancetype)initDisciplineWithObjectDiscipline:(NSObject *)disc{
     Discipline *discipline = [[Discipline alloc]init];
     discipline.name = [disc valueForKey:@"disciplineName"];
     discipline.details = [disc valueForKey:@"Detail"];

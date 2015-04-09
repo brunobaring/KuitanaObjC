@@ -10,6 +10,7 @@
 #import "TC_Guest_List.h"
 #import "TC_NavigationController.h"
 #import "TC_Teacher.h"
+#import "TC_InsertNewClass.h"
 #import "Database.h"
 #import "Discipline.h"
 
@@ -24,8 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];    //253 218 57 //249 176 30
-
-//    self.tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255.0/255.0f];
+    
+    //    self.tableView.backgroundColor = [UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255.0/255.0f];
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
@@ -50,17 +51,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.teacher.classes.count;
+    if (self.teacher.classes.count == 0) {
+        return 1;
+    }else{
+        return self.teacher.classes.count;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MateriasProf" forIndexPath:indexPath];
-    Discipline *disc = [self.teacher.classes objectAtIndex:indexPath.row];
-    cell.textLabel.text = disc.name;
-    cell.detailTextLabel.text = disc.details;
-    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.detailTextLabel.numberOfLines = 3;
+    if (self.teacher.classes.count == 0) {
+        cell.textLabel.text = @"You don`t have any classes yet";
+        cell.detailTextLabel.text = @"Add one tapping on ➕";
+    }else{
+        Discipline *disc = [self.teacher.classes objectAtIndex:indexPath.row];
+        cell.textLabel.text = disc.name;
+        cell.detailTextLabel.text = disc.details;
+        cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.detailTextLabel.numberOfLines = 3;
+    }
     //253 218 57
     [cell setBackgroundColor:[UIColor colorWithRed:254/255.0f green:219/255.0f blue:84/255.0f alpha:1.0f]];
     
@@ -70,14 +80,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-
+    
     UITableViewCell *aaa = [tableView cellForRowAtIndexPath:indexPath];
-
+    
     self.className = aaa.textLabel.text;
     self.classDetail = aaa.detailTextLabel.text;
     
-
-//    [self performSegueWithIdentifier: @"sendUser2" sender: self];
+    
+    //    [self performSegueWithIdentifier: @"sendUser2" sender: self];
     
 }
 
@@ -93,6 +103,10 @@
         destViewController.teacher = self.teacher;
         destViewController.className = cellSegue.textLabel.text;
         destViewController.classDetail = cellSegue.detailTextLabel.text;
+    }
+    if ([segue.identifier isEqualToString:@"insertNewClass"]) {
+        TC_InsertNewClass *destViewController = segue.destinationViewController;
+        destViewController.teacher = self.teacher;
     }
 }
 

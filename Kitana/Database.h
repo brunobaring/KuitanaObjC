@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ST_Student.h"
+#import "TC_Teacher.h"
 
 @interface Database : NSObject
 
@@ -24,5 +24,7 @@
 + (NSMutableArray *)checkLoginWithEmail:(NSString *)email Password:(NSString *)pass;
 
 + (NSMutableArray *)insertUserWithName:(NSString *)name Email:(NSString *)email Password:(NSString *)pass Matricula:(NSString *)matricula Type:(NSString *)type;
+
++ (void)insertClassWithName:(NSString *)class_name Details:(NSString *)class_details Teacher:(TC_Teacher *)teacher;
 
 @end

@@ -34,8 +34,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"%@",self.student.classes);
+    
+//    if (self.student.classes.count == 0) {
+//        NSLog(@"sdasd");
+//    }else{
     NSDictionary *AUXstudents = @{@"Cadastradas" : self.student.classes,
                                   @"Não-Cadastradas" : @[@""]};
+//    }
     
     infoToRow = [NSMutableDictionary dictionaryWithDictionary:AUXstudents];
     
@@ -110,6 +116,7 @@
 }
 
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MateriasAluno" forIndexPath:indexPath];
@@ -144,9 +151,7 @@
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MateriasAluno" forIndexPath:indexPath];
     
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    
+        
 }
 
 - (void)reloadTableInfo:(NSNotification *)notification{

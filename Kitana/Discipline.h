@@ -11,9 +11,9 @@
 
 @interface Discipline : NSObject
 
-+(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc Teachers:(NSMutableArray *)stud;
-+(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc Students:(NSMutableArray *)stud;
-+(instancetype)initDisciplineWithArrayDiscipline:(NSObject *)disc;
++(instancetype)initDisciplineWithObjectDiscipline:(NSObject *)disc Teachers:(NSMutableArray *)stud;
++(instancetype)initDisciplineWithObjectDiscipline:(NSObject *)disc Students:(NSMutableArray *)stud;
++(instancetype)initDisciplineWithObjectDiscipline:(NSObject *)disc;
 
 @property NSString *name;
 @property NSString *abreviation;

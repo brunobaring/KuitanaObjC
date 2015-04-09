@@ -96,7 +96,7 @@
     NSError *error = nil;
     NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableArray *response1 = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",response1);
+//        NSLog(@"%@",response1);
     
     return response1;
 }
@@ -117,5 +117,18 @@
 
     return response1;
     
+}
+
++ (void)insertClassWithName:(NSString *)class_name Details:(NSString *)class_details Teacher:(TC_Teacher *)teacher{
+//    http://198.199.109.62/insertClass.php?name=class&detail=detail&major=25&minor=25&type=teacher
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://198.199.109.62/insertClass.php?name=%@&detail=%@&major=%d&minor=%d&type=teacher",class_name,class_details,teacher.major,teacher.minor]]];
+//    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://198.199.109.62/insertClass.php?name=%@&detail=%@&major=35&minor=35&type=teacher",class_name,class_details]]];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+
 }
 @end

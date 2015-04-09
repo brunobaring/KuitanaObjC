@@ -59,6 +59,8 @@
     
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -93,6 +95,18 @@
 //    return NO;
 //}
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:
+                       (id)[[UIColor colorWithRed:254/255.0f green:219/255.0f blue:84/255.0f alpha:255/255.0f] CGColor],
+                       (id)[[UIColor colorWithRed:252/255.0f green:148/255.0f blue:58/255.0f alpha:255/255.0f] CGColor],
+                       nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
+}
+
+
 - (IBAction)WillLogin:(id)sender {
     
     NSMutableArray *info = [[NSMutableArray alloc]init];
@@ -113,6 +127,9 @@
         self.student = [ST_Student initStudentWithArray:info];
         [self performSegueWithIdentifier:@"LoginStudent" sender:self];
     }
+}
+- (IBAction)sing:(id)sender {
+    [self performSegueWithIdentifier:@"aaa" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

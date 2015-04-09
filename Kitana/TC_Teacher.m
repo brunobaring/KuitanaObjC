@@ -42,7 +42,7 @@
     for ( int i = 0 ; i < disciplinesFromWeb.count ; i++) {
         NSObject *disciplines = [disciplinesFromWeb objectAtIndex:i];
         NSMutableArray *students = [studentsAllClasses objectAtIndex:i];
-        Discipline *discipline = [Discipline initDisciplineWithArrayDiscipline:disciplines Students:students];
+        Discipline *discipline = [Discipline initDisciplineWithObjectDiscipline:disciplines Students:students];
         [teacher.classes addObject:discipline];
     }
     
