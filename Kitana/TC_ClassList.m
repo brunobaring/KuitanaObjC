@@ -101,8 +101,9 @@
         UITableViewCell *cellSegue = [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
         TC_Guest_List *destViewController = segue.destinationViewController;
         destViewController.teacher = self.teacher;
-        destViewController.className = cellSegue.textLabel.text;
-        destViewController.classDetail = cellSegue.detailTextLabel.text;
+        destViewController.disc = [self.teacher.classes objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+//        destViewController.className = cellSegue.textLabel.text;
+//        destViewController.classDetail = cellSegue.detailTextLabel.text;
     }
     if ([segue.identifier isEqualToString:@"insertNewClass"]) {
         TC_InsertNewClass *destViewController = segue.destinationViewController;

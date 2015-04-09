@@ -42,7 +42,6 @@
     Discipline * disc = [[Discipline alloc]init];
     disc.name = self.name.text;
     disc.details = self.details.text;
-    self.teacher.classes = [[NSMutableArray alloc]init];
     [self.teacher.classes addObject:disc];
     NSLog(@"%@",[self.teacher.classes firstObject]);
 }

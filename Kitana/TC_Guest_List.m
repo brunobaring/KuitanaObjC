@@ -49,7 +49,7 @@ int a=0;
     self.studentsPending = [[NSMutableArray alloc]init];
     self.studentsNotPresent = [[NSMutableArray alloc]init];
     self.beaconsPossiblyNewStudents = [[NSMutableArray alloc]init];
-    self.studentsNotPresent = [self getStudentsNotPresentFromClassName:self.className ClassDetail:self.classDetail];
+    self.studentsNotPresent = [self getStudentsNotPresentFromClassName:self.disc.name ClassDetail:self.disc.details];
     
     NSDictionary *AUXstudents = @{@"Aguardando Confirmação" : self.studentsPending,
                                   @"Não-Presentes" : self.studentsNotPresent,
@@ -82,31 +82,50 @@ int a=0;
 
 - (void)reloadTableInfo:(NSNotification *)notification{
     
-//    NSLog(@"%@",self.beaconsPossiblyNewStudents);
+    NSLog(@"%@",self.beaconsPossiblyNewStudents);
     
-    for (int i = 0 ; i < self.find_beacon.BeaconsFound.count; i++) {  //percorre os beacons achados pelo find_beacon
+    for (int i = 0 ; i < self.find_beacon.BeaconsFound.count; i++)
+    {  //percorre os beacons achados pelo find_beacon
         CLBeacon *beacon = [self.find_beacon.BeaconsFound objectAtIndex:i];  //cria um beacon com o beacon da posicao i no vetor de beacons achados
-        for (int j = 0 ; j < self.teacher.classes.count ; j++) {  //percorre todas as aulas que os professores dao
-            Discipline *disc = [self.teacher.classes objectAtIndex:j];  //cria uma disciplina com a disciplina da posicao j no vetor de aulas do professor
-            if ([disc.name isEqualToString:self.className]) {  // se o nome da disciplina criada for igual a disciplina da posicao j no vetor de aulas do professor
-                for (int k = 0 ; k < disc.students.count; k++) {  //percorre os estudantes da disciplina criada q é igual a disciplina da posicao j no vetor de aulas do professor
-                    ST_Student * stud = [disc.students objectAtIndex:k];  //cria um aluno na posicao k da aula criada
-                    if (stud.major == [beacon.major intValue] && stud.minor == [beacon.minor intValue] && ![self.studentsPending containsObject:stud.name] && ![self.studentsPresent containsObject:stud.name]) {  //se aluno nao estiver já marcado como presente nem como aguardando confirmacao,
-                            [self.studentsNotPresent removeObject:stud.name]; //remove o aluno do nao presente
-                            [self.studentsPending addObject:stud.name]; // e adiciona ao vetor de aguardando confirmaçao
-                        
-                    }else{
-//                        if (self.beaconsPossiblyNewStudents.count == 0) {
-//                            [self.beaconsPossiblyNewStudents addObject:beacon];
-//                        }else{
-//                            for (int l = 0; l < self.beaconsPossiblyNewStudents.count; l++) {
-//                                CLBeacon *beacon2 = [self.beaconsPossiblyNewStudents objectAtIndex:l];
-//                                if ([beacon2.major intValue] != [beacon.major intValue] || [beacon2.minor intValue] != [beacon.minor intValue]) {
-//                                    [self.beaconsPossiblyNewStudents addObject:beacon];
-//                                }
-//                            }
-//                        }
+        
+        int k ;
+        
+        for ( k = 0 ; k < self.disc.students.count; k++) //percorre os estudantes da disciplina criada q é igual a disciplina da posicao j no vetor de aulas do professor
+        {
+            ST_Student * stud = [self.disc.students objectAtIndex:k];  //cria um aluno na posicao k da aula criada
+            if (stud.major == [beacon.major intValue] && stud.minor == [beacon.minor intValue])
+            {
+                
+                if ( ![self.studentsPending containsObject:stud.name] && ![self.studentsPresent containsObject:stud.name]) //se aluno nao estiver já marcado como presente nem como aguardando confirmacao,
+                {
+                    [self.studentsNotPresent removeObject:stud.name]; //remove o aluno do nao presente
+                    [self.studentsPending addObject:stud.name]; // e adiciona ao vetor de aguardando confirmaçao
+                }
+                break ;
+            }
+        }
+        
+        if ( k == self.disc.students.count )
+        {
+            if (self.beaconsPossiblyNewStudents.count == 0)
+            {
+                [self.beaconsPossiblyNewStudents addObject:beacon];
+            }
+            else
+            {
+                int l;
+                for (l = 0; l < self.beaconsPossiblyNewStudents.count; l++)
+                {
+                    CLBeacon *beacon2 = [self.beaconsPossiblyNewStudents objectAtIndex:l];
+                    if ([beacon2.major intValue] == [beacon.major intValue] && [beacon2.minor intValue] == [beacon.minor intValue])
+                    {
+                        break;
                     }
+                }
+                
+                if ( l == self.beaconsPossiblyNewStudents.count )
+                {
+                    [self.beaconsPossiblyNewStudents addObject:beacon];
                 }
             }
         }

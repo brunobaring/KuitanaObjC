@@ -85,6 +85,7 @@
 
 -(void) abc{
     [self.be_beacon startRangingPlease];
+    NSLog(@"major: %d    minor: %d", self.student.major, self.student.minor);
 }
 
 

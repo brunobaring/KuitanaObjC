@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "User.h"
 #import "TC_Teacher.h"
+#import "Discipline.h"
 
 
 @interface TC_Guest_List : UIViewController <UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate>
@@ -27,8 +28,9 @@
 
 @property int major;
 @property int minor;
-@property NSString *className;
-@property NSString *classDetail;
+//@property NSString *className;
+//@property NSString *classDetail;
+@property Discipline *disc;
 
 @property TC_Teacher *teacher;
 @property User *userStudentAnswer;
