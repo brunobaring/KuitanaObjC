@@ -1,3 +1,4 @@
+
 //
 //  SignUp.m
 //  Kitana
@@ -49,8 +50,10 @@
     
     NSMutableArray *aux = [[NSMutableArray alloc]init];
     
+    NSString *username = [ self.name.text stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    
     if (self.type.selectedSegmentIndex == 0) {
-        aux = [Database insertUserWithName:self.name.text Email:self.email.text Password:self.password.text Matricula:self.matricula.text Type:@"teacher"];
+        aux = [Database insertUserWithName:username Email:self.email.text Password:self.password.text Matricula:self.matricula.text Type:@"teacher"];
         int major = [[[aux objectAtIndex:0]objectForKey:@"major"]intValue];
         int minor = [[[aux objectAtIndex:0]objectForKey:@"minor"]intValue];
         self.teacher = [TC_Teacher initTeacherWithMajor:major Minor:minor Name:self.name.text Email:self.email.text Matricula:self.matricula.text];
@@ -59,7 +62,7 @@
     }
     
     if (self.type.selectedSegmentIndex == 1) {
-        aux = [Database insertUserWithName:self.name.text Email:self.email.text Password:self.password.text Matricula:self.matricula.text Type:@"student"];
+        aux = [Database insertUserWithName:username Email:self.email.text Password:self.password.text Matricula:self.matricula.text Type:@"student"];
         int major = [[[aux objectAtIndex:0]objectForKey:@"major"]intValue];
         int minor = [[[aux objectAtIndex:0]objectForKey:@"minor"]intValue];
         self.student = [ST_Student initStudentWithMajor:major Minor:minor Name:self.name.text Email:self.email.text Matricula:self.matricula.text];

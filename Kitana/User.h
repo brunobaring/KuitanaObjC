@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface User : NSObject
 
 +(instancetype)initUserWithMajor:(int)major Minor:(int)minor;

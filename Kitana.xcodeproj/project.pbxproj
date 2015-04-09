@@ -322,10 +322,11 @@
 				TargetAttributes = {
 					2E7CFEE61AAA87BF00E740E9 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = E23E7FV55Y;
+						DevelopmentTeam = F9MHMZ7EXG;
 					};
 					2E7CFEFF1AAA87BF00E740E9 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = F9MHMZ7EXG;
 						TestTargetID = 2E7CFEE61AAA87BF00E740E9;
 					};
 				};

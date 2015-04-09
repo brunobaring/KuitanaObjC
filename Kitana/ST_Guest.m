@@ -35,13 +35,18 @@
     [super viewDidLoad];
     
     NSLog(@"%@",self.student.classes);
+    NSDictionary *AUXstudents ;
     
-//    if (self.student.classes.count == 0) {
-//        NSLog(@"sdasd");
-//    }else{
-    NSDictionary *AUXstudents = @{@"Cadastradas" : self.student.classes,
+    if (self.student.classes.count == 0)
+    {
+        NSLog(@"sdasd");
+        AUXstudents = [[NSDictionary alloc] init];
+    }
+    else
+    {
+    AUXstudents = @{@"Cadastradas" : self.student.classes,
                                   @"Não-Cadastradas" : @[@""]};
-//    }
+    }
     
     infoToRow = [NSMutableDictionary dictionaryWithDictionary:AUXstudents];
     

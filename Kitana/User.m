@@ -8,6 +8,7 @@
 
 #import "User.h"
 #import "Database.h"
+#import "Discipline.h"
 
 @interface User ()
 
@@ -33,6 +34,10 @@
     User *user = [[User alloc]init];
     [user setMajor:major];
     [user setMinor:minor];
+    user.classes = [[NSMutableArray alloc] init];
+    
+    Discipline *disc = [[Discipline alloc] init];
+    [user.classes addObject: disc];
     return user;
 }
 
